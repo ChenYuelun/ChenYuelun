@@ -42,7 +42,7 @@ fun toast(text: String) {
         return
     }
     if (toast == null) {
-        toast = Toast.makeText(ActivityStack.GlobalContext(), text, Toast.LENGTH_SHORT)
+        toast = Toast.makeText( ActivityStack.GlobalContext(), text, Toast.LENGTH_SHORT)
     } else {
         toast!!.setText(text)
     }
@@ -56,9 +56,9 @@ fun toast(text: String) {
  * @param resId   弹出的字符串Id
  */
 fun toast(resId: Int) {
-    val showText = ActivityStack.GlobalContext().resources.getString(resId)
+    val showText =  ActivityStack.GlobalContext().resources.getString(resId)
     if (toast == null) {
-        toast = Toast.makeText(ActivityStack.GlobalContext(), showText, Toast.LENGTH_SHORT)
+        toast = Toast.makeText( ActivityStack.GlobalContext(), showText, Toast.LENGTH_SHORT)
     } else {
         toast!!.setText(showText)
     }
@@ -72,7 +72,7 @@ fun toast(resId: Int) {
  */
 fun BuildToast(): Toast? {
     if (toastBulider == null) {
-        toastBulider = Toast(ActivityStack.GlobalContext())
+        toastBulider = Toast( ActivityStack.GlobalContext())
     }
     return toastBulider
 }

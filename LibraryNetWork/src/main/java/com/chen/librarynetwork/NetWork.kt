@@ -1,9 +1,6 @@
-package com.chen.chenyuelun
+package com.chen.librarynetwork
 
 import android.app.Application
-import com.chen.libraryresouse.utils.ActivityStack
-import com.chen.libraryresouse.utils.initLogCanPrint
-
 
 /**
  * Created by ${ChenYuelun} on 2017/12/10.
@@ -30,11 +27,4 @@ import com.chen.libraryresouse.utils.initLogCanPrint
  *
  *说明：
  */
-open class AppApplication : Application(){
-
-    override fun onCreate() {
-        super.onCreate()
-        initLogCanPrint(true)//是否可打印日志
-        ActivityStack.initApplication(this)
-    }
-}
+open class NetWork(val app : Application)

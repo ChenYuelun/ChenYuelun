@@ -3,6 +3,7 @@ package com.chen.libraryresouse.base
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.chen.libraryresouse.costomView.LoadingView
 import com.chen.libraryresouse.utils.ActivityStack
 import com.chen.libraryresouse.utils.isNetworkAvailable
@@ -157,6 +158,8 @@ open class BaseActiviy: AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         judgeFirstHttp()
+        log("thisPage",mPagename)
+        Log.e("thisPage",mPagename)
     }
 
     override fun onDestroy() {

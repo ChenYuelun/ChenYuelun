@@ -49,7 +49,7 @@ import java.security.NoSuchAlgorithmException
  * 得到屏幕的宽度
  */
 fun getScreenWidth(): Int {
-    val manager = ActivityStack.GlobalContext()
+    val manager =  ActivityStack.GlobalContext()
             .getSystemService(Context.WINDOW_SERVICE) as WindowManager
     val display = manager.defaultDisplay
     // 低于版本13的
@@ -66,7 +66,7 @@ fun getScreenWidth(): Int {
  * 得到屏幕的高度
  */
 fun getScreenHeight(): Int {
-    val manager = ActivityStack.GlobalContext()
+    val manager =  ActivityStack.GlobalContext()
             .getSystemService(Context.WINDOW_SERVICE) as WindowManager
     val display = manager.defaultDisplay
     // 低于版本13的
@@ -83,7 +83,7 @@ fun getScreenHeight(): Int {
 @SuppressLint("WifiManagerLeak", "MissingPermission")
 // WLAN MAC 地址
 fun getPhoneMacId(): String {
-    @SuppressLint("WifiManagerLeak") val wifi = ActivityStack.GlobalContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+    @SuppressLint("WifiManagerLeak") val wifi =  ActivityStack.GlobalContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
     @SuppressLint("MissingPermission") val info = wifi.connectionInfo
     return info.macAddress
 }
@@ -92,7 +92,7 @@ fun getPhoneMacId(): String {
 //IMEI: 仅仅只对Android手机有效
 fun getPhoneIMEI(): String {
     try {
-        val TelephonyMgr = ActivityStack.GlobalContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        val TelephonyMgr =  ActivityStack.GlobalContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         return TelephonyMgr.deviceId
     } catch (e: Exception) {
         e.printStackTrace()
@@ -116,7 +116,7 @@ fun getPhoneId(): String {
 //获取本App版本号
 fun getVersionName(): String {
     try {
-        val pi = ActivityStack.GlobalContext().applicationContext.packageManager.getPackageInfo(ActivityStack.GlobalContext().applicationContext.packageName, 0)
+        val pi =  ActivityStack.GlobalContext().applicationContext.packageManager.getPackageInfo( ActivityStack.GlobalContext().applicationContext.packageName, 0)
         return pi.versionName + ""
     } catch (e: PackageManager.NameNotFoundException) {
         e.printStackTrace()
@@ -127,13 +127,13 @@ fun getVersionName(): String {
 
 //是否黑屏
 fun isScreenUnlocked(): Boolean {
-    val mKeyguardManager = ActivityStack.GlobalContext().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+    val mKeyguardManager =  ActivityStack.GlobalContext().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
     return !mKeyguardManager.inKeyguardRestrictedInputMode()
 }
 
 //程序是否可见
 fun isVisibleApp(packageName: String): Boolean {
-    val activityManager = ActivityStack.GlobalContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val activityManager =  ActivityStack.GlobalContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 
     val tasksInfo = activityManager.getRunningTasks(1)
     if (tasksInfo.size > 0) {
@@ -190,7 +190,7 @@ private fun isWifi(mContext: Context): Boolean {
 @SuppressLint("MissingPermission")
 //判断网络是否连接可用
 fun isNetworkAvailable(): Boolean {
-    val mConnectivityManager = ActivityStack.GlobalContext()
+    val mConnectivityManager =  ActivityStack.GlobalContext()
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     if (mConnectivityManager != null) {
         val mNetworkInfo = mConnectivityManager
@@ -205,7 +205,7 @@ fun isNetworkAvailable(): Boolean {
 //获取versionCode
 fun getVersionCode(): Int {
     try {
-        val pi = ActivityStack.GlobalContext().packageManager.getPackageInfo(ActivityStack.GlobalContext().packageName, 0)
+        val pi =  ActivityStack.GlobalContext().packageManager.getPackageInfo( ActivityStack.GlobalContext().packageName, 0)
         return pi.versionCode
     } catch (e: Exception) {
         e.printStackTrace()
@@ -231,7 +231,7 @@ fun setStatusStyle(view: View) {
     }
     view.setPadding(
             view.paddingLeft,
-            getPhoneStatusBarHeight(ActivityStack.GlobalContext().resources) +view.paddingTop,
+            getPhoneStatusBarHeight( ActivityStack.GlobalContext().resources) +view.paddingTop,
             view.right,
             view.bottom)
 }

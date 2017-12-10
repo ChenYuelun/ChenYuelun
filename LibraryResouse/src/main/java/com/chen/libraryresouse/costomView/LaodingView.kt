@@ -45,20 +45,17 @@ class LoadingView(val context: BaseActiviy) {
     private var netInvalidView: View? = null
 
     fun initNoDataView() {
-//        noDataView = View.inflate(context, R.layout.view_no_data, null)
         noDataView = ViewGroup.inflate(context, R.layout.view_no_data,null)
         noDataView!!.setLayoutParams(getLayoutParams(context))
     }
 
 
     fun initLoadingView() {
-//        loadingView = View.inflate(context, R.layout.view_loading, null)
         loadingView = ViewGroup.inflate(context,R.layout.view_loading,null)
         loadingView!!.setLayoutParams(getLayoutParams(context))
     }
 
     fun initNetInvalidView() {
-//        netInvalidView = View.inflate(context, R.layout.view_net_invalid, null) as LinearLayout
         netInvalidView = ViewGroup.inflate(context,R.layout.view_net_invalid,null)
         netInvalidView!!.setLayoutParams(getLayoutParams(context))
         netInvalidView!!.findViewById<TextView>(R.id.tv_reload).setOnClickListener() {
@@ -132,7 +129,7 @@ class LoadingView(val context: BaseActiviy) {
 
         if (netInvalidView == null) initNetInvalidView()
         if (isShowNoNet) {
-            log("on_request_res")
+           log("on_request_res")
             //移除无网页面 先移除再添加 防止程序崩溃
             (context.window.decorView as FrameLayout).removeView(netInvalidView)
             //显示无网页面

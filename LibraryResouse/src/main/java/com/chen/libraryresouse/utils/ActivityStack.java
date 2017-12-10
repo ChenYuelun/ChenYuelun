@@ -122,14 +122,6 @@ public class ActivityStack {
     public static Activity getTopActivity() {
         return activityStack.lastElement();
     }
-    /**
-     * 获取顶部的activity
-     *
-     * @return 返回顶部的activity
-     */
-    public static Activity getTopActivitys() {
-        return activityStack.get(2);
-    }
 
     /**
      * 获取顶部的activity
