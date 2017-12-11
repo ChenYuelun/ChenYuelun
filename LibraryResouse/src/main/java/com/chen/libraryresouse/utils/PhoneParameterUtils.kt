@@ -263,3 +263,21 @@ fun getLayoutParams(context: Context): FrameLayout.LayoutParams {
     layoutParams.setMargins(0, margin, 0, 0)
     return layoutParams
 }
+
+/**
+ * 获取应用程序版本名称
+ *
+ * @param context Context
+ */
+fun getAppVersionName(): String? {
+    try {
+        val packageManager = ActivityStack.GlobalContext().packageManager
+        val packageInfo = packageManager.getPackageInfo(
+                ActivityStack.GlobalContext().packageName, 0)
+        return packageInfo.versionName
+    } catch (e: PackageManager.NameNotFoundException) {
+        e.printStackTrace()
+    }
+
+    return null
+}

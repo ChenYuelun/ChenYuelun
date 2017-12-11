@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ChenYuelun.iml" filepath="$PROJECT_DIR$/ChenYuelun.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LibraryNetWork/LibraryNetWork.iml" filepath="$PROJECT_DIR$/LibraryNetWork/LibraryNetWork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibraryResouse/LibraryNetWork/LibraryNetWork.iml" filepath="$PROJECT_DIR$/LibraryResouse/LibraryNetWork/LibraryNetWork.iml" />
       <module fileurl="file://$PROJECT_DIR$/LibraryResouse/LibraryResouse.iml" filepath="$PROJECT_DIR$/LibraryResouse/LibraryResouse.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

@@ -1,7 +1,5 @@
 package com.chen.librarynetwork
 
-import android.app.Application
-
 /**
  * Created by ${ChenYuelun} on 2017/12/10.
  *
@@ -27,4 +25,4 @@ import android.app.Application
  *
  *说明：
  */
-open class NetWork(val app : Application)
+val CAIQR_CLIENT_TYPE = 0
