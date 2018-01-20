@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--editetext文字大小-->
+    <dimen name="text_edittext">17sp</dimen>
+
+    <!--CountDownTimer文字大小-->
+    <dimen name="text_counttimer">14sp</dimen>
+
+    <!--验证码登录数字大小-->
+    <dimen name="scuritycode">38sp</dimen>
+
+    <!--验证码登录框的大小-->
+    <dimen name="scuritycode_box">60dp</dimen>
+    <!--验证码数登录框间隔-->
+    <dimen name="scuritycode_gap">20dp</dimen>
+
+
+    <!--晒单文字大小-->
+    <dimen name="text_show_order">14sp</dimen>
+    <dimen name="gallery_shadow_width">0.8dp</dimen>
+    <dimen name="gallery_shadow_corner">4dp</dimen>
+    <color name="white">#FFFFFF</color>
+    <color name="bg_count_down">#40000000</color>
+
+    <!--LoadingButton的背景色-->
+    <color name="laodingButtonBackground">#5499fe</color>
+    <!--计时器显示重新获取时的颜色-->
+    <color name="countdownRecapture">#5499fe</color>
+    <!--验证码登录选中时颜色-->
+    <color name="secrutiycode_check">#5499fe</color>
+    <!--验证码登录默认背景色-->
+    <color name="secrutiycode_deafualt">#55000000</color>
+    <!--计时器的默认颜色-->
+    <color name="countdownDefault">#55000000</color>
+
+    <color name="black">#000000</color>
+    <!--闪屏倒计时颜色-->
+    <color name="div_view_first_count_down">#FFFFFF</color>
+    <!--晒单文字颜色-->
+    <color name="text_show_order">#FFFFFF</color>
+
+    <!--晒单开关背景颜色-->
+    <color name="bg_show_order">#55000000</color>
+
+
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Drop Shadow Stack -->
+    <!--<item>-->
+        <!--<shape>-->
+            <!--<padding-->
+                <!--android:bottom="@dimen/gallery_shadow_width"-->
+                <!--android:left="@dimen/gallery_shadow_width"-->
+                <!--android:right="@dimen/gallery_shadow_width"-->
+                <!--android:top="@dimen/gallery_shadow_width" />-->
+            <!--<corners android:radius="@dimen/gallery_shadow_corner" />-->
+            <!--<solid android:color="#005494ff" />-->
+        <!--</shape>-->
+    <!--</item>-->
+    <item>
+        <shape>
+            <padding
+                android:bottom="@dimen/gallery_shadow_width"
+                android:left="@dimen/gallery_shadow_width"
+                android:right="@dimen/gallery_shadow_width"
+                android:top="@dimen/gallery_shadow_width" />
+            <corners android:radius="@dimen/gallery_shadow_corner" />
+            <solid android:color="#055494ff" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="@dimen/gallery_shadow_width"
+                android:left="@dimen/gallery_shadow_width"
+                android:right="@dimen/gallery_shadow_width"
+                android:top="@dimen/gallery_shadow_width" />
+            <corners android:radius="@dimen/gallery_shadow_corner" />
+            <solid android:color="#0A5494ff" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="@dimen/gallery_shadow_width"
+                android:left="@dimen/gallery_shadow_width"
+                android:right="@dimen/gallery_shadow_width"
+                android:top="@dimen/gallery_shadow_width" />
+            <corners android:radius="@dimen/gallery_shadow_corner" />
+            <solid android:color="#0D5494ff" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="@dimen/gallery_shadow_width"
+                android:left="@dimen/gallery_shadow_width"
+                android:right="@dimen/gallery_shadow_width"
+                android:top="@dimen/gallery_shadow_width" />
+            <corners android:radius="@dimen/gallery_shadow_corner" />
+            <solid android:color="#0F5494ff" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="@dimen/gallery_shadow_width"
+                android:left="@dimen/gallery_shadow_width"
+                android:right="@dimen/gallery_shadow_width"
+                android:top="@dimen/gallery_shadow_width" />
+            <solid android:color="#125494ff" />
+            <corners android:radius="@dimen/gallery_shadow_corner" />
+        </shape>
+    </item>
+    <!--<item>-->
+        <!--<shape>-->
+            <!--<padding-->
+                <!--android:bottom="@dimen/gallery_shadow_width"-->
+                <!--android:left="@dimen/gallery_shadow_width"-->
+                <!--android:right="@dimen/gallery_shadow_width"-->
+                <!--android:top="@dimen/gallery_shadow_width" />-->
+            <!--<solid android:color="#005494ff" />-->
+            <!--<corners android:radius="@dimen/gallery_shadow_corner" />-->
+        <!--</shape>-->
+    <!--</item>-->
+    <!-- Background -->
+    <item>
+        <shape>
+            <solid android:color="#ffffff" />
+            <corners android:radius="@dimen/gallery_shadow_corner" />
+        </shape>
+    </item>
+</layer-list>

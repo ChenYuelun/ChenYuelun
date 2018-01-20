@@ -1,5 +1,6 @@
 package com.chen.libraryresouse.utils
 
+import android.annotation.SuppressLint
 import android.text.TextUtils
 import android.widget.Toast
 
@@ -32,18 +33,20 @@ private var toast: Toast? = null
 private var toastBulider: Toast? = null
 
 
-/**
+
+        /**
  * toast 字符串
  *
  * @param text    弹出的字符串
  */
+@SuppressLint("ShowToast")
 fun toast(text: String) {
-    if (TextUtils.isEmpty(text) || TextUtils.isEmpty(text.trim { it <= ' ' }) || text.length == 0 || text.contains("异常")) {
+    if (text.isEmpty()) {
         return
     }
     if (toast == null) {
         toast = Toast.makeText( ActivityStack.GlobalContext(), text, Toast.LENGTH_SHORT)
-    } else {
+    } else if (toast != null) {
         toast!!.setText(text)
     }
     toast!!.show()

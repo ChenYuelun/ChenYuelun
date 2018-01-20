@@ -40,7 +40,7 @@ fun <T> workScheduler(): ObservableTransformer<T, T> {
     return ObservableTransformer { observable ->
         observable
                 .subscribeOn(Schedulers.io())
-                .compose(MyErrorTransformer.Singleton<T>().get())
+                .compose(MyErrorTransformer<T>())
                 .observeOn(AndroidSchedulers.mainThread())
 
     }

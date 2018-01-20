@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_countDown"
+    android:layout_width="70dp"
+    android:layout_height="28dp"
+    android:background="@drawable/bg_view_first_screen_count_down"
+    android:clickable="false">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:textColor="@color/myWhite"
+        android:textSize="13sp" />
+</FrameLayout>

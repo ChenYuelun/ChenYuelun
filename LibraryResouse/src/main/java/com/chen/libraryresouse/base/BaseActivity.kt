@@ -42,7 +42,7 @@ open class BaseActiviy: AppCompatActivity() {
     val noNetMaskOpen = 1
     val noNetMaskClose = 2
     val firstSendHttpNoBack = 3
-    val laodingView = LoadingView(this)
+    val loadingView = LoadingView(this)
 
     open var isNetNecessary = true //是否需要联网 在super.onCreate()之前调用
 
@@ -60,10 +60,9 @@ open class BaseActiviy: AppCompatActivity() {
         log("thisPageName", mPagename)
         //添加activity的管理器中
         ActivityStack.addActivity(this)
-
         //需要联网获取数据
         if (isNetNecessary) {
-            laodingView.showOrHideLoadingView(true)
+            loadingView.showOrHideLoadingView(true)
         }
     }
 
@@ -98,8 +97,8 @@ open class BaseActiviy: AppCompatActivity() {
         } else {
             //如果没网 第一次请求数据显示无网界面，如果不是第一次请求，不显示无网界面
             if (onResumeStutas == firstEnterInto) {
-                laodingView.showOrHideLoadingView(false)//移除loading界面
-                laodingView.showOrHideNoNetView(true)//显示无网界面
+                loadingView.showOrHideLoadingView(false)//移除loading界面
+                loadingView.showOrHideNoNetView(true)//显示无网界面
                 onResumeStutas = noNetMaskOpen
             }
         }
@@ -110,13 +109,13 @@ open class BaseActiviy: AppCompatActivity() {
      */
     fun onRequestSuccess() {
         if (onResumeStutas == noNetMaskOpen) {
-            laodingView.showOrHideNoNetView(false)
+            loadingView.showOrHideNoNetView(false)
             onResumeStutas = noNetMaskClose
             //请求数据成功，状态改为无网络遮罩层关闭
         }
 
         log("request_interner", "数据请求成功")
-        laodingView.showOrHideLoadingView(false)
+        loadingView.showOrHideLoadingView(false)
     }
 
     /**
@@ -124,10 +123,10 @@ open class BaseActiviy: AppCompatActivity() {
      */
     fun onRequestError() {
         log("request_interner", "请求失败：" + onResumeStutas)
-        laodingView.showOrHideLoadingView(false)
+        loadingView.showOrHideLoadingView(false)
         if (onResumeStutas == firstSendHttpNoBack) {
             //第一次请求数据失败,打开无网络遮罩层，状态改为无网络遮罩层开启
-            laodingView.showOrHideNoNetView(true)
+            loadingView.showOrHideNoNetView(true)
             onResumeStutas = noNetMaskOpen
             log("request_interner", "请求失败：" + onResumeStutas)
         }
@@ -150,8 +149,8 @@ open class BaseActiviy: AppCompatActivity() {
 
     open fun requestAgain() {
         log("request_interner", "再次请求" + onResumeStutas)
-        laodingView.showOrHideNoNetView(false)
-        laodingView.showOrHideLoadingView(true)
+        loadingView.showOrHideNoNetView(false)
+        loadingView.showOrHideLoadingView(true)
         onResumeStutas = firstSendHttpNoBack
     }
 

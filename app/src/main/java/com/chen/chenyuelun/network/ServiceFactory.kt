@@ -1,6 +1,11 @@
-package com.chen.librarynetwork
+
 
 import android.os.Build
+import com.chen.chenyuelun.network.RequestApi
+import com.chen.librarynetwork.CAIQR_CLIENT_TYPE
+import com.chen.librarynetwork.InterceptorResponse
+import com.chen.librarynetwork.TrustAllCerts
+import com.chen.libraryresouse.base.BASE_URL_A
 import com.chen.libraryresouse.utils.ActivityStack
 import com.chen.libraryresouse.utils.getAppVersionName
 import com.chen.libraryresouse.utils.getPhoneName
@@ -46,7 +51,7 @@ class ServiceFactory {
 
     companion object {
         private val DEFAULT_TIMEOUT = 0
-        val cacheFile = File(ActivityStack.GlobalContext(). getExternalCacheDir(), "ChenDevCache")
+        val cacheFile = File(ActivityStack.GlobalContext().getExternalCacheDir(), "ChenDevCache")
         val cache = Cache(cacheFile, (1024 * 1024 * 100).toLong())
         val sClient = OkHttpClient.Builder().cache(cache)
                 .connectTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
@@ -84,25 +89,25 @@ class ServiceFactory {
             return ssfFactory
         }
 
-        fun <T> createRxRetrofitService(clazz: Class<T>, endPoint: String): T {
+        fun createRxRetrofitService(): RequestApi? {
             return Retrofit
                     .Builder()
                     .client(sClient)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(endPoint)
+                    .baseUrl(BASE_URL_A)
                     .build()
-                    .create(clazz)
+                    .create(RequestApi::class.java)
         }
 
-        fun <T> createRetrofitService(clazz: Class<T>, endPoint: String): T {
+        fun  createRetrofitService(): RequestApi? {
             return Retrofit
                     .Builder()
                     .client(sClient)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(endPoint)
+                    .baseUrl(BASE_URL_A)
                     .build()
-                    .create(clazz)
+                    .create(RequestApi::class.java)
         }
     }
 }

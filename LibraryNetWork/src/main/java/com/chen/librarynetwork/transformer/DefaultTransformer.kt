@@ -35,7 +35,7 @@ fun <T> DefaultTransformer(): ObservableTransformer<T, T> {
     return ObservableTransformer { observable ->
         observable
                 .subscribeOn(Schedulers.io())
-                .compose(ErrorTransformer.Singleton<T>().get())
+                .compose(MyDefaultTransformer<T>())
                 .observeOn(AndroidSchedulers.mainThread())
 
     }

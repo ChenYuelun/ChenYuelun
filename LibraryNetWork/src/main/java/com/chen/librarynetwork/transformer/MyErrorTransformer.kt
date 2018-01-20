@@ -31,7 +31,7 @@ import io.reactivex.functions.Function
  *
  *说明：
  */
-class MyErrorTransformer<T> private constructor() : ObservableTransformer<T, T> {
+class MyErrorTransformer<T> : ObservableTransformer<T, T> {
     override fun apply(upstream: Observable<T>): ObservableSource<T> {
         return upstream.map(object : Function<T, T> {
             override fun apply(t: T): T {
@@ -54,24 +54,4 @@ class MyErrorTransformer<T> private constructor() : ObservableTransformer<T, T> 
             }
         })
     }
-
-    //单例
-
-    class Singleton <T> {
-
-        private @Volatile var instance: MyErrorTransformer<T>? = null
-
-         fun get(): MyErrorTransformer<T>? {
-            if (instance == null) {
-                synchronized(this) {
-                    if (instance == null) {
-                        instance = MyErrorTransformer<T>()
-                    }
-                }
-            }
-            return instance!!
-        }
-    }
-
-
 }

@@ -35,7 +35,6 @@ class TrustAllCerts : X509TrustManager {
     override fun checkServerTrusted(chain: Array<X509Certificate>, authType: String) {}
 
     override fun getAcceptedIssuers(): Array<X509Certificate> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         return arrayOf<X509Certificate>()
     }
 
