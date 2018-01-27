@@ -1,12 +1,13 @@
-package com.chen.chenyuelun.network.request
+package com.chen.chenyuelun.data.network.request
 
-import com.chen.chenyuelun.UserInfo
-import com.chen.chenyuelun.network.ParamsMapValue
+import com.chen.chenyuelun.data.single.UserInfo
+import com.chen.chenyuelun.data.network.ParamsMapValue
 import com.chen.librarynetwork.utils.Base64
 import com.chen.librarynetwork.utils.Global
 import com.chen.libraryresouse.utils.AppTools.Companion.getCurrentTimeMillis
 import com.chen.libraryresouse.utils.AppTools.Companion.getTraceId
-import com.chen.libraryresouse.utils.log
+import com.chen.libraryresouse.utils.LogUtils
+
 import java.security.KeyFactory
 import java.security.spec.PKCS8EncodedKeySpec
 import java.util.HashMap
@@ -23,8 +24,8 @@ import java.util.HashMap
 
 open class BaseRequest {
 
-    val SIGN_ALGORITHMS = "SHA1WithRSA"
-    val SIGN_SECRET = "MIIEowIBAAKCAQEAtHfdjyg0IU0YWdGvTQuelEZc9kVE2zwfc4e25fMTgz3EPwCR" +
+    private val SIGN_ALGORITHMS = "SHA1WithRSA"
+    private val SIGN_SECRET = "MIIEowIBAAKCAQEAtHfdjyg0IU0YWdGvTQuelEZc9kVE2zwfc4e25fMTgz3EPwCR" +
             "Y39TnjaawWbmtUFTzxykjxmvg7nEbXntRoVeZ3Fy/LJG5jy/L8EnHxyOXS15dmoA" +
             "dKL138W3Ljpnju0J/qaFYxwx5iY5Nv8S9DyH+bVwyPupnEGY7ZuOPZOm2F8WVtXb" +
             "fT2R33TmqdTsA7FUiVB0ImrNDEYpMGHYzhDz/lURUxXWVgSMHu8NWpIHq13a7Q0r" +
@@ -75,8 +76,8 @@ open class BaseRequest {
     fun getSign(): Map<String, String> {
         val map = HashMap<String, String>()
         val str = getSignEncodeStr(params)
-        log("22222111111===>" + str)
-        map.put("Caiqr-Signature", this!!.sign(str, SIGN_SECRET)!!)
+        LogUtils.d("22222111111===>" + str)
+        map["Caiqr-Signature"] = this.sign(str, SIGN_SECRET)!!
         return map
     }
 

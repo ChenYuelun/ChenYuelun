@@ -52,22 +52,6 @@ fun toast(text: String) {
     toast!!.show()
 }
 
-/**
- * toast 字符串Id
- *
- * @param context Context
- * @param resId   弹出的字符串Id
- */
-fun toast(resId: Int) {
-    val showText =  ActivityStack.GlobalContext().resources.getString(resId)
-    if (toast == null) {
-        toast = Toast.makeText( ActivityStack.GlobalContext(), showText, Toast.LENGTH_SHORT)
-    } else {
-        toast!!.setText(showText)
-    }
-
-    toast!!.show()
-}
 
 /**
  * 返回toast 实例对象

@@ -1,12 +1,13 @@
-package com.chen.chenyuelun
+package com.chen.chenyuelun.view.activity
 
-import android.os.Bundle
-import com.chen.chenyuelun.network.RxSubscriber
-import com.chen.chenyuelun.network.request.GetBannerAdvertiseManagementRequest
-import com.chen.chenyuelun.network.response.GetBannerAdvertiseManagementResponse
+import com.chen.chenyuelun.R
+import com.chen.chenyuelun.data.network.request.GetBannerAdvertiseManagementRequest
+import com.chen.chenyuelun.data.model.GetBannerAdvertiseManagementResponse
 import com.chen.librarynetwork.transformer.MyDefaultTransformer
 import com.chen.libraryresouse.base.BaseActiviy
-import com.chen.libraryresouse.utils.log
+import com.chen.libraryresouse.constans.SPConstants
+import com.chen.libraryresouse.utils.LogUtils
+import com.chen.libraryresouse.utils.SpUtils
 import com.chen.libraryresouse.utils.toast
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -15,11 +16,30 @@ import io.reactivex.rxkotlin.subscribeBy
  */
 class WelcomeActivity : BaseActiviy() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        isNetNecessary = false
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    private lateinit var loginToken: String
+    private lateinit var versionName: String
+
+    override fun getLayoutId() = R.layout.activity_main
+
+    override fun initView() {
+
+    }
+
+    override fun initIntentData() {
+        versionName = SpUtils.getData(this, SPConstants.VERSION_CODE, "") as String
+        loginToken = SpUtils.getData(this, SPConstants.LOGIN_TOKEN, "") as String
+    }
+
+
+    override fun requestApi() {
+        sendVertifyCanBuy()
         sendGetBannerAdvertiseManagementRequest()
+    }
+
+
+    private fun sendVertifyCanBuy() {
+
+
     }
 
 
@@ -29,13 +49,12 @@ class WelcomeActivity : BaseActiviy() {
      */
     private fun sendGetBannerAdvertiseManagementRequest() {
         val getBannerAdvertiseManagementRequest = GetBannerAdvertiseManagementRequest("xiaomi")
-        val sub = RxSubscriber<GetBannerAdvertiseManagementResponse>(this)
         ServiceFactory.createRxRetrofitService()
                 ?.get_banner_advertise_management(getBannerAdvertiseManagementRequest.getSign(), getBannerAdvertiseManagementRequest.getRequestMap())
                 ?.compose(MyDefaultTransformer<GetBannerAdvertiseManagementResponse>())
                 ?.subscribeBy(
                         onError = {
-                            log("请求出错："+it.message)
+                            LogUtils.d("请求出错：" + it.message)
                             it.printStackTrace()
                             toast("请求失败")
                         },

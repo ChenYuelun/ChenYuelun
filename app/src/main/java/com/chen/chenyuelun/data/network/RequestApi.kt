@@ -1,6 +1,6 @@
-package com.chen.chenyuelun.network
+package com.chen.chenyuelun.data.network
 
-import com.chen.chenyuelun.network.response.GetBannerAdvertiseManagementResponse
+import com.chen.chenyuelun.data.model.GetBannerAdvertiseManagementResponse
 import io.reactivex.Observable
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded

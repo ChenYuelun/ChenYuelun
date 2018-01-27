@@ -1,7 +1,7 @@
-package com.chen.chenyuelun.network.request
+package com.chen.chenyuelun.data.network.request
 
-import com.chen.chenyuelun.network.ParamsMapKey
-import com.chen.chenyuelun.network.ParamsMapValue
+import com.chen.chenyuelun.data.network.ParamsMapKey
+import com.chen.chenyuelun.data.network.ParamsMapValue
 
 /**
  * Created by chenyuelun on 2018/1/20.

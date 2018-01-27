@@ -1,6 +1,7 @@
 package com.chen.librarynetwork
 
-import com.chen.libraryresouse.utils.isNetworkAvailable
+import com.chen.libraryresouse.utils.ActivityStack
+import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.isNetworkAvailable
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -36,7 +37,7 @@ class InterceptorResponse : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        if (!isNetworkAvailable()) {
+        if (!isNetworkAvailable(ActivityStack.GlobalContext()!!)) {
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
                     .url(request.url())
@@ -44,7 +45,7 @@ class InterceptorResponse : Interceptor {
         }
 
         val response = chain.proceed(request)
-        if (isNetworkAvailable()) {
+        if (isNetworkAvailable(ActivityStack.GlobalContext()!!)) {
             val maxAge = 60 * 60 // read from cache for 1 minute
             response.newBuilder()
                     .removeHeader("Pragma")

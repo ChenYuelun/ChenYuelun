@@ -9,7 +9,8 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.chen.libraryresouse.R
-import com.chen.libraryresouse.utils.log
+import com.chen.libraryresouse.utils.LogUtils
+
 
 /**
  * Created by chenyuelun on 2018/1/20.
@@ -45,7 +46,7 @@ class FirstScreenCountDownView(context: Context, attrs: AttributeSet) : FrameLay
      */
     fun setCountDownTimer(countTime: Int) {
 
-        log("welcomeActivity", "counttime" + countTime)
+        LogUtils.d("welcomeActivity", "counttime" + countTime)
         mTvTime!!.text = "跳过" + countTime / 1000
 
         //两个参数，前一个指倒计时的总时间，后一个指多长时间倒数一下。
@@ -53,7 +54,7 @@ class FirstScreenCountDownView(context: Context, attrs: AttributeSet) : FrameLay
         mCountDownTimer = object : CountDownTimer(countTime.toLong(), 1000) {
             //两个参数，前一个指倒计时的总时间，后一个指多长时间倒数一下。
             override fun onTick(millisUntilFinished: Long) {
-                log("welcomeActivity", "" + millisUntilFinished + ";" + millisUntilFinished / 1000)
+                LogUtils.d("welcomeActivity", "" + millisUntilFinished + ";" + millisUntilFinished / 1000)
                 val l = millisUntilFinished / 1000
                 mTvTime!!.text = "跳过 " + l + "s"
             }
@@ -71,7 +72,7 @@ class FirstScreenCountDownView(context: Context, attrs: AttributeSet) : FrameLay
      */
     fun startCount() {
         if (mCountDownTimer != null) {
-            log("welcomeActivity", "startCount")
+            LogUtils.d("welcomeActivity", "startCount")
             this@FirstScreenCountDownView.visibility = View.VISIBLE
             mCountDownTimer!!.start()
         }

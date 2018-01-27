@@ -1,6 +1,4 @@
-package com.chen.chenyuelun
-
-import android.text.TextUtils
+package com.chen.chenyuelun.data.single
 
 /**
  * Created by chenyuelun on 2018/1/20.

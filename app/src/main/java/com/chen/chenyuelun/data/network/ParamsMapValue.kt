@@ -1,4 +1,4 @@
-package com.chen.chenyuelun.network
+package com.chen.chenyuelun.data.network
 
 /**
  * Created by chenyuelun on 2018/1/20.

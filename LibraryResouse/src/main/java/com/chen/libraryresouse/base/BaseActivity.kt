@@ -3,11 +3,11 @@ package com.chen.libraryresouse.base
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import android.view.View
 import com.chen.libraryresouse.costomView.LoadingView
 import com.chen.libraryresouse.utils.ActivityStack
-import com.chen.libraryresouse.utils.isNetworkAvailable
-import com.chen.libraryresouse.utils.log
+import com.chen.libraryresouse.utils.LogUtils
+import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.isNetworkAvailable
 
 /**
  * Created by ${ChenYuelun} on 2017/12/10.
@@ -34,137 +34,96 @@ import com.chen.libraryresouse.utils.log
  *
  *说明：
  */
-open class BaseActiviy: AppCompatActivity() {
+abstract class BaseActiviy : AppCompatActivity() {
 
-    val mContext: Context = this
-    private var onResumeStutas = 0
-    val firstEnterInto = 0
-    val noNetMaskOpen = 1
-    val noNetMaskClose = 2
-    val firstSendHttpNoBack = 3
-    val loadingView = LoadingView(this)
+    private var loadingView: LoadingView? = null
 
-    open var isNetNecessary = true //是否需要联网 在super.onCreate()之前调用
+    abstract val isNetNecessary: Boolean //是否需要联网
 
     open var mPagename = ""
 
-    private var iterateOnResume = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setUp()
-    }
-
-    private fun setUp() {
+        setContentView(getLayoutId())
         mPagename = this::class.simpleName!!//当前类名
-        log("thisPageName", mPagename)
         //添加activity的管理器中
         ActivityStack.addActivity(this)
+        loadingView = LoadingView(this)
+        initIntentData()
+        initView()
         //需要联网获取数据
-        if (isNetNecessary) {
-            loadingView.showOrHideLoadingView(true)
-        }
+        judgeFirstHttp()
     }
+
+    abstract fun getLayoutId(): Int
+
+    abstract fun initView()
+
+    open fun initIntentData() {}
+
+
 
 
     fun judgeFirstHttp() {
-
         if (!isNetNecessary) {//不需要网络请求
             return
         }
-        log("request_interner", "是否第一次请求网络")
-        log("request_interner", "onResumeStutas" + onResumeStutas)
-        if (isNetworkAvailable()) {
-            //如果是第一次请求数据
-            if (onResumeStutas == firstEnterInto) {
-                //是否在OnResume 重复请求部分接口
-                iterateOnResume = sendFirstHttp()
-                log("request_interner", "第一次请求网络")
-                //先默认第一次请求数据失败
-                onResumeStutas = firstSendHttpNoBack
-            } else if (onResumeStutas == noNetMaskClose) {
-                //在无网界面 重新打开网络请求数据
-                log("request_interner", "无网界面点击请求")
-                if (iterateOnResume) {//是否在onResume中重复请求第一次请求的数据
-                    sendFirstHttp()
-                    log("request_interner", "onResume中sendFirstHttp执行的重复请求")
-                } else {
-                    //此方法中是需要在onResume中重复请求的接口
-                    sendIterateHttp()
-                    log("request_interner", "onResume中sendIterateHttp执行的重复请求")
-                }
-            }
+        if (isNetworkAvailable(this)) {
+            showOrHideLoading(true)
+            requestApi()
         } else {
-            //如果没网 第一次请求数据显示无网界面，如果不是第一次请求，不显示无网界面
-            if (onResumeStutas == firstEnterInto) {
-                loadingView.showOrHideLoadingView(false)//移除loading界面
-                loadingView.showOrHideNoNetView(true)//显示无网界面
-                onResumeStutas = noNetMaskOpen
-            }
+            showOrHideNoNet(true)
         }
+
     }
+
+    abstract fun requestApi()
 
     /**
      * 当请求数据成功调用此方法
      */
-    fun onRequestSuccess() {
-        if (onResumeStutas == noNetMaskOpen) {
-            loadingView.showOrHideNoNetView(false)
-            onResumeStutas = noNetMaskClose
-            //请求数据成功，状态改为无网络遮罩层关闭
-        }
-
-        log("request_interner", "数据请求成功")
-        loadingView.showOrHideLoadingView(false)
+    open fun onRequestSuccess(hasData: Boolean) {
+        //关闭无网/加载中/无数据视图
+        showOrHideLoading(false)
+        showOrHideNoNet(false)
+        showOrHideNoData(!hasData)
     }
 
     /**
      * 当请求数据失败调用此方法
      */
-    fun onRequestError() {
-        log("request_interner", "请求失败：" + onResumeStutas)
-        loadingView.showOrHideLoadingView(false)
-        if (onResumeStutas == firstSendHttpNoBack) {
-            //第一次请求数据失败,打开无网络遮罩层，状态改为无网络遮罩层开启
-            loadingView.showOrHideNoNetView(true)
-            onResumeStutas = noNetMaskOpen
-            log("request_interner", "请求失败：" + onResumeStutas)
-        }
+    open fun onRequestError(hasData: Boolean) {
+        showOrHideLoading(false)
+        showOrHideNoData(false)
+        showOrHideNoNet(!hasData)
     }
-
-    /**
-     * 返回的布尔值值是是否在onresume中重复发送此接口
-     * true 在onresume中重复发送
-     * false 只发送一次
-     */
-    fun sendFirstHttp(): Boolean {
-        return false
-    }
-
-    /**
-     * 如果两个及以上需要在进入页面发送的几口 其中部分需要在onresume中发送
-     * 将部分需要重复发送的接口放入其中 并将sendFirstHttp返回值设置成false
-     */
-    fun sendIterateHttp() {}
 
     open fun requestAgain() {
-        log("request_interner", "再次请求" + onResumeStutas)
-        loadingView.showOrHideNoNetView(false)
-        loadingView.showOrHideLoadingView(true)
-        onResumeStutas = firstSendHttpNoBack
+        showOrHideLoading(true)
     }
 
     override fun onResume() {
         super.onResume()
         judgeFirstHttp()
-        log("thisPage",mPagename)
-        Log.e("thisPage",mPagename)
+        LogUtils.d("thisPage", mPagename)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         //从activity管理器中移除
         ActivityStack.removeActivity(this)
+    }
+
+    open fun showOrHideLoading(show: Boolean) {
+        loadingView!!.showOrHideLoadingView(show)
+    }
+
+    open fun showOrHideNoData(show: Boolean) {
+        loadingView!!.showOrHideNoDataView(show)
+    }
+
+    open fun showOrHideNoNet(show: Boolean) {
+        loadingView!!.showOrHideNoNetView(show, View.OnClickListener { requestAgain() })
     }
 
 

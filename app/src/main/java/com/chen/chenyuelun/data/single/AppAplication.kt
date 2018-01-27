@@ -1,8 +1,8 @@
-package com.chen.chenyuelun
+package com.chen.chenyuelun.data.single
 
 import android.app.Application
 import com.chen.libraryresouse.utils.ActivityStack
-import com.chen.libraryresouse.utils.initLogCanPrint
+import com.chen.libraryresouse.utils.LogUtils
 
 
 /**
@@ -34,7 +34,15 @@ open class AppApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()
-        initLogCanPrint(true)//是否可打印日志
+        instance = this
+        LogUtils.initLogCanPrint(true)//是否可打印日志
         ActivityStack.initApplication(this)
+
     }
+
+    companion object {
+        private var instance : AppApplication? = null
+        fun instance()  = instance!!
+    }
+
 }

@@ -1,15 +1,16 @@
 
 
 import android.os.Build
-import com.chen.chenyuelun.network.RequestApi
+import com.chen.chenyuelun.data.single.AppApplication
+import com.chen.chenyuelun.data.network.RequestApi
 import com.chen.librarynetwork.CAIQR_CLIENT_TYPE
 import com.chen.librarynetwork.InterceptorResponse
 import com.chen.librarynetwork.TrustAllCerts
 import com.chen.libraryresouse.base.BASE_URL_A
-import com.chen.libraryresouse.utils.ActivityStack
-import com.chen.libraryresouse.utils.getAppVersionName
-import com.chen.libraryresouse.utils.getPhoneName
-import com.chen.libraryresouse.utils.log
+import com.chen.libraryresouse.utils.LogUtils
+import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.getAppVersionName
+import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.getPhoneName
+
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -51,16 +52,16 @@ class ServiceFactory {
 
     companion object {
         private val DEFAULT_TIMEOUT = 0
-        val cacheFile = File(ActivityStack.GlobalContext().getExternalCacheDir(), "ChenDevCache")
-        val cache = Cache(cacheFile, (1024 * 1024 * 100).toLong())
-        val sClient = OkHttpClient.Builder().cache(cache)
+        private val cacheFile = File(AppApplication.instance().externalCacheDir, "ChenDevCache")
+        private val cache = Cache(cacheFile, (1024 * 1024 * 100).toLong())
+        private val sClient = OkHttpClient.Builder().cache(cache)
                 .connectTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .addInterceptor { chain ->
                     val request = chain.request()
                             .newBuilder()
-                            .addHeader("User-Agent", "caiqr/" + getAppVersionName() + "(" + getPhoneName() + "/" + Build.VERSION.RELEASE + ") " + "Client/" + CAIQR_CLIENT_TYPE)
+                            .addHeader("User-Agent", "caiqr/" + getAppVersionName(AppApplication.instance()) + "(" + getPhoneName() + "/" + Build.VERSION.RELEASE + ") " + "Client/" + CAIQR_CLIENT_TYPE)
                             .addHeader("Content-Type", "application/x-www-form-urlencoded")
                             .build()
                     chain.proceed(request)
@@ -69,7 +70,7 @@ class ServiceFactory {
                 .addInterceptor(
                         HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
                             //打印retrofit日志
-                            log("RetrofitLog", "retrofitBack = " + message)
+                            LogUtils.d("RetrofitLog", "retrofitBack = " + message)
                         }).setLevel(HttpLoggingInterceptor.Level.BODY))
                 .retryOnConnectionFailure(true)
                 .sslSocketFactory(createSSLSocketFactory()!!, TrustAllCerts())
