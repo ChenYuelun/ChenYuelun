@@ -5,11 +5,11 @@ package com.chen.chenyuelun.view
  */
 interface BaseView{
 
-    fun showLoading(show :Boolean)
+    fun showLoading(show :Boolean){}
 
-    fun showNoData(show :Boolean)
+    fun showNoData(show :Boolean){}
 
-    fun showNoNet(show :Boolean)
+    fun showNoNet(show :Boolean){}
 
     fun onError(hasData :Boolean)
 

@@ -53,9 +53,8 @@ private val UNLOGON_2 = -2
 fun handleException(e: Throwable): ApiException {
     val ex: ApiException
     if (e is HttpException) {    //HTTP错误
-        val httpException = e as HttpException
         ex = ApiException(e, ErrorType.HTTP_ERROR)
-        when (httpException.code()) {
+        when (e.code()) {
             UNAUTHORIZED ->
                 ex.message = "当前请求需要用户验证"
             REQUEST_TIMEOUT ->

@@ -37,10 +37,6 @@ import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.isNetworkAvai
  */
 abstract class BaseFragment : Fragment() {
 
-    private var loadingView: LoadingView? = null
-
-    abstract val isNetNecessary: Boolean //是否需要联网
-
     open var mPagename = ""
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,66 +57,15 @@ abstract class BaseFragment : Fragment() {
     private fun setUp() {
         mPagename = this::class.simpleName!!//当前类名
         LogUtils.d("thisPageName", mPagename)
-        loadingView = LoadingView(this)
-        //需要联网获取数据
-        judgeFirstHttp()
-
     }
 
-    fun judgeFirstHttp() {
-        if (!isNetNecessary) {//不需要网络请求
-            return
-        }
-        if (isNetworkAvailable(context)) {
-            showOrHideLoading(true)
-            requestApi()
-        } else {
-            showOrHideNoNet(true)
-        }
-    }
 
     abstract fun requestApi()
 
-    /**
-     * 当请求数据成功调用此方法
-     */
-    open fun onRequestSuccess(hasData: Boolean) {
-        //关闭无网/加载中/无数据视图
-        showOrHideLoading(false)
-        showOrHideNoNet(false)
-        showOrHideNoData(!hasData)
-    }
-
-    /**
-     * 当请求数据失败调用此方法
-     */
-    open fun onRequestError(hasData: Boolean) {
-        showOrHideLoading(false)
-        showOrHideNoData(false)
-        showOrHideNoNet(!hasData)
-    }
-
-    open fun requestAgain() {
-        showOrHideLoading(true)
-    }
-
     override fun onResume() {
         super.onResume()
-        judgeFirstHttp()
         LogUtils.d("thisPage", mPagename)
     }
 
-
-    open fun showOrHideLoading(show: Boolean) {
-        loadingView!!.showOrHideLoadingView(show)
-    }
-
-    open fun showOrHideNoData(show: Boolean) {
-        loadingView!!.showOrHideNoDataView(show)
-    }
-
-    open fun showOrHideNoNet(show: Boolean) {
-        loadingView!!.showOrHideNoNetView(show, View.OnClickListener { requestAgain() })
-    }
 
 }

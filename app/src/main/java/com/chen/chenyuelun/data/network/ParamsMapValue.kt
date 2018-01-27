@@ -5,6 +5,7 @@ package com.chen.chenyuelun.data.network
  */
 class ParamsMapValue private constructor(){
     companion object {
+        val CAIQR_CLIENT_TYPE = 0
         val CAIQR_VERSION = "1.2"
         //闪屏倒计时接口
         val CMD_GET_BANNER_ADVERTISE_MANAGEMENT = "get_banner_advertise_management"

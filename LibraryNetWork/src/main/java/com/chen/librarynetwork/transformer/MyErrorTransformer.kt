@@ -33,25 +33,15 @@ import io.reactivex.functions.Function
  */
 class MyErrorTransformer<T> : ObservableTransformer<T, T> {
     override fun apply(upstream: Observable<T>): ObservableSource<T> {
-        return upstream.map(object : Function<T, T> {
-            override fun apply(t: T): T {
-                // 通过对返回码进行业务判断决定是返回错误还是正常取数据
-                //                if (httpResult.getCode() != ErrorType.SUCCESS){
-                //                    throw new ServerException(httpResult.getMsg(), httpResult.getCode());
-                //                }
-                return t
-            }
-        }).onErrorResumeNext(object : Function<Throwable, Observable<out T>> {
-            override fun apply(t: Throwable): Observable<out T> {
-                t.printStackTrace()
-                return Observable.error(handleException(t))
-            }
-
-            fun call(throwable: Throwable): Observable<out T> {
-                //ExceptionEngine为处理异常的驱动器
-                throwable.printStackTrace()
-                return Observable.error(handleException(throwable))
-            }
-        })
+        return upstream.map { t ->
+            // 通过对返回码进行业务判断决定是返回错误还是正常取数据
+            //                if (httpResult.getCode() != ErrorType.SUCCESS){
+            //                    throw new ServerException(httpResult.getMsg(), httpResult.getCode());
+            //                }
+            t
+        }.onErrorResumeNext(Function<Throwable, Observable<out T>> { t ->
+                    t.printStackTrace()
+                    Observable.error(handleException(t))
+                })
     }
 }

@@ -36,24 +36,21 @@ import io.reactivex.functions.Function
  */
 class ErrorTransformer<T> private constructor() : ObservableTransformer<HttpResult<T>, T> {
     override fun apply(upstream: Observable<HttpResult<T>>): ObservableSource<T> {
-        return upstream.map(object : Function<HttpResult<T>, T> {
-            override fun apply(t: HttpResult<T>): T {
-                if (t.code !== ErrorType.SUCCESS) {
-                    throw ServerException(t.msg, t.code)
-                }
-                return t.resp!!
+        return upstream.map { t ->
+            if (t.code !== ErrorType.SUCCESS) {
+                throw ServerException(t.msg, t.code)
             }
-        }).onErrorResumeNext(object : Function<Throwable, Observable<out T>>{
-            override fun apply(t: Throwable): Observable<out T> {
-                t.printStackTrace()
-                return Observable.error(handleException(t))
-            }
-        })
+            t.resp!!
+        }.onErrorResumeNext(Function<Throwable, Observable<out T>> { t ->
+                    t.printStackTrace()
+                    Observable.error(handleException(t))
+                })
     }
 
     class Singleton <T> {
 
-        private @Volatile var instance: ErrorTransformer<T>? = null
+        @Volatile
+        private var instance: ErrorTransformer<T>? = null
 
         fun get(): ErrorTransformer<T>? {
             if (instance == null) {

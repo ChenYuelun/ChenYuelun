@@ -5,7 +5,7 @@ import android.content.Context
 /**
  * Created by chenyuelun on 2018/1/22.
  */
-class SpUtils private constructor() {
+class SPUtils private constructor() {
     companion object {
         //存储的sharedPreferences文件名
         private val FILE_NAME = "appSaveFile"

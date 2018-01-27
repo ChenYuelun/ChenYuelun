@@ -1,6 +1,7 @@
 
 
 import android.os.Build
+import com.chen.chenyuelun.data.network.ParamsMapValue
 import com.chen.chenyuelun.data.single.AppApplication
 import com.chen.chenyuelun.data.network.RequestApi
 import com.chen.librarynetwork.CAIQR_CLIENT_TYPE
@@ -61,7 +62,7 @@ class ServiceFactory {
                 .addInterceptor { chain ->
                     val request = chain.request()
                             .newBuilder()
-                            .addHeader("User-Agent", "caiqr/" + getAppVersionName(AppApplication.instance()) + "(" + getPhoneName() + "/" + Build.VERSION.RELEASE + ") " + "Client/" + CAIQR_CLIENT_TYPE)
+                            .addHeader("User-Agent", "caiqr/" + getAppVersionName(AppApplication.instance()) + "(" + getPhoneName() + "/" + Build.VERSION.RELEASE + ") " + "Client/" + ParamsMapValue.CAIQR_CLIENT_TYPE)
                             .addHeader("Content-Type", "application/x-www-form-urlencoded")
                             .build()
                     chain.proceed(request)
@@ -90,7 +91,7 @@ class ServiceFactory {
             return ssfFactory
         }
 
-        fun createRxRetrofitService(): RequestApi? {
+        fun createRxRetrofitService(): RequestApi {
             return Retrofit
                     .Builder()
                     .client(sClient)
@@ -101,7 +102,7 @@ class ServiceFactory {
                     .create(RequestApi::class.java)
         }
 
-        fun  createRetrofitService(): RequestApi? {
+        fun  createRetrofitService(): RequestApi {
             return Retrofit
                     .Builder()
                     .client(sClient)
