@@ -2,6 +2,7 @@ package com.chen.chenyuelun.view.activity
 
 import android.os.CountDownTimer
 import android.os.Handler
+import android.view.View
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.presenter.WelcomePresenterImpi
 import com.chen.chenyuelun.view.BaseView
@@ -15,11 +16,14 @@ import com.chen.libraryresouse.utils.SPUtils
 class WelcomeActivity : BaseActiviy(), BaseView {
 
 
+
     private lateinit var loginToken: String
     private lateinit var versionName: String
     private lateinit var presenter: WelcomePresenterImpi
 
     override fun getLayoutId() = R.layout.activity_welcome
+
+    override fun getTitleLayout() = null
 
     override fun setUp() {
         presenter = WelcomePresenterImpi(this)

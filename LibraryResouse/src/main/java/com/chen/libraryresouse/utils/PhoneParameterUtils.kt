@@ -1,6 +1,7 @@
 package com.chen.libraryresouse.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.ActivityManager
 import android.app.KeyguardManager
 import android.content.Context
@@ -282,6 +283,10 @@ class PhoneParameterUtils{
             }
 
             return null
+        }
+
+        fun getAppVersionCode(context: Context): String{
+            return  "65"
         }
 
     }

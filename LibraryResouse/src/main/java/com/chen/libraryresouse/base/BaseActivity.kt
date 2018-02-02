@@ -3,8 +3,10 @@ package com.chen.libraryresouse.base
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.chen.libraryresouse.utils.ActivityStack
 import com.chen.libraryresouse.utils.LogUtils
+import com.chen.libraryresouse.utils.PhoneParameterUtils
 
 /**
  * Created by ${ChenYuelun} on 2017/12/10.
@@ -41,11 +43,14 @@ abstract class BaseActiviy : AppCompatActivity() {
         mPagename = this::class.simpleName!!//当前类名
         //添加activity的管理器中
         ActivityStack.addActivity(this)
+        PhoneParameterUtils.setTitleLayout(this,getTitleLayout())
         initIntentData()
         setUp()
         readCahce()
         requestApi()
     }
+
+    abstract fun getTitleLayout(): View ?
 
     abstract fun setUp()
 

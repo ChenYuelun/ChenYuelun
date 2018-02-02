@@ -1,6 +1,7 @@
 package com.chen.chenyuelun.data.network
 
 import com.chen.chenyuelun.data.model.GetBannerAdvertiseManagementResponse
+import com.chen.chenyuelun.data.model.HomeCatalogResponse
 import com.chen.chenyuelun.data.model.HomeMenuResponse
 import io.reactivex.Observable
 import retrofit2.http.FieldMap
@@ -23,5 +24,11 @@ interface RequestApi {
     @FormUrlEncoded()
     @POST("api/get_banner_advertise_management")
     fun getBannerAdvertiseManagement(@HeaderMap map: Map<String, String>, @FieldMap maps: Map<String, String>): Observable<GetBannerAdvertiseManagementResponse>
+
+
+    //首页目录列表
+    @FormUrlEncoded
+    @POST("api/home_catalog")
+    fun getHomeCatalog(@HeaderMap map: Map<String, String>, @FieldMap maps: Map<String, String>): Observable<HomeCatalogResponse>
 
 }

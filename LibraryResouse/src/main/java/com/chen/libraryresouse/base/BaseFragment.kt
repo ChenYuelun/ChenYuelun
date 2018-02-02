@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chen.libraryresouse.utils.LogUtils
+import com.chen.libraryresouse.utils.PhoneParameterUtils
 
 
 /**
@@ -44,17 +45,20 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        PhoneParameterUtils.setTitleLayout(context!!,getTitleLyout())
         setUp()
         initArguments()
         initView()
     }
+
+    abstract fun getTitleLyout(): View?
 
 
     abstract fun getLayoutId(): Int
     protected fun initView() {}
     protected fun initArguments() {}
 
-    private fun setUp() {
+    open fun setUp() {
         mPagename = this::class.simpleName!!//当前类名
         LogUtils.d("thisPageName", mPagename)
     }

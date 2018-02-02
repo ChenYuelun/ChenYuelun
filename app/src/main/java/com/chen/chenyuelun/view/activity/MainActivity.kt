@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.CountDownTimer
 import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
+import android.view.View
 import android.widget.ImageView
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.adapter.HomeMenuRvAdapter
@@ -24,11 +25,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActiviy() {
 
+
     private val navigationData = NavigationBarUtils.instance.getData()
 
     private val fragmentMap = mutableMapOf<String, BaseFragment>()
 
     override fun getLayoutId() = R.layout.activity_main
+
+    override fun getTitleLayout() = null
 
     override fun setUp() {
         rv_main_navigation.layoutManager = GridLayoutManager(this, navigationData.size)!!

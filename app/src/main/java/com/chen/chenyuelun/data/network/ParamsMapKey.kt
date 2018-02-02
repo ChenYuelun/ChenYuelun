@@ -5,8 +5,9 @@ package com.chen.chenyuelun.data.network
  */
 class ParamsMapKey private constructor(){
     companion object {
-        val CMD = "cmd"
+        const val CMD = "cmd"
         //渠道id
-        val CHANNEL_ID = "channel_id"
+        const val CHANNEL_ID = "channel_id"
+        const val VERSION="version"
     }
 }

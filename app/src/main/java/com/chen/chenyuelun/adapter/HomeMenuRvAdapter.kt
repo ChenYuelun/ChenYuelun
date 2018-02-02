@@ -46,7 +46,7 @@ class HomeMenuRvAdapter(private val context: MainActivity, private val data: Lis
             params.topMargin = DensityUtils.dip2px(context, 0f)
             holder.itemView.tv_mainMenu_item.visibility = View.VISIBLE
         }
-        holder.itemView.iv_mainMenu_item.requestLayout()
+//        holder.itemView.iv_mainMenu_item.requestLayout()
         holder.itemView.setOnClickListener {
 
             if (!itemData.isSelected) {

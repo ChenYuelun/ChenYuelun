@@ -82,8 +82,6 @@ open class BaseRequest {
     }
 
     //获取要签名的串
-
-    //获取要签名的串
     private fun getSignEncodeStr(map: Map<String, String>): String {
         val encodedParams = StringBuilder()
 
