@@ -1,13 +1,10 @@
 package com.chen.libraryresouse.base
 
-import android.content.Context
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import com.chen.libraryresouse.costomView.LoadingView
 import com.chen.libraryresouse.utils.ActivityStack
 import com.chen.libraryresouse.utils.LogUtils
-import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.isNetworkAvailable
 
 /**
  * Created by ${ChenYuelun} on 2017/12/10.

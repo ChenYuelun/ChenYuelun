@@ -26,11 +26,12 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
         private val mInstanceMap = HashMap<String, CacheManager>()
 
         operator fun get(ctx: Context): CacheManager {
-            return get(ctx, "ACache")
+            return get(ctx, "caiqrc")
         }
 
         operator fun get(ctx: Context, cacheName: String): CacheManager {
             val f = File(ctx.cacheDir, cacheName)
+            if (!f.exists()) f.mkdir()
             return get(f, MAX_SIZE, MAX_COUNT)
         }
 
@@ -39,7 +40,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
         }
 
         operator fun get(ctx: Context, maxSize: Long, max_count: Int): CacheManager {
-            val f = File(ctx.cacheDir, "ACache")
+            val f = File(ctx.cacheDir, "caiqrc")
             return get(f, maxSize, max_count)
         }
 
@@ -58,12 +59,12 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
 
     }
 
-    private lateinit var mCache: ACacheManager
+    private val mCache: ACacheManager = ACacheManager(cacheDir, maxSize, max_count)
 
 // =======================================
     // ============ String数据 读写 ==============
     // =======================================
-    /**
+    /**r
      * 保存 String数据 到 缓存中
      *
      * @param key
@@ -71,7 +72,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
      * @param value
      * 保存的String数据
      */
-    fun put(key: String, value: String) {
+    private fun put(key: String, value: String) {
         val file = mCache.newFile(key)
         var out: BufferedWriter? = null
         try {
@@ -103,20 +104,18 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
      * @param saveTime
      * 保存的时间，单位：秒
      */
-    fun put(key: String, value: String, saveTime: Int) {
+    private fun put(key: String, value: String, saveTime: Int) {
         put(key, Utils.newStringWithDateInfo(saveTime, value))
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private
-            /**
-             * 读取 String数据
-             *
-             * @param key
-             * @return String 数据
-             */
-    fun getAsString(key: String): String? {
-        val file = mCache[key]
+    /**
+     * 读取 String数据
+     *
+     * @param key
+     * @return String 数据
+     */
+    private fun getAsString(key: String): String? {
+        val file = mCache.get(key)
         if (!file.exists())
             return null
         var removeFile = false
@@ -168,20 +167,19 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
         put(key, value.toString(), saveTime)
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-            /**
-             * 读取JSONObject数据
-             *
-             * @param key
-             * @return JSONObject数据
-             */
+    /**
+     * 读取JSONObject数据
+     *
+     * @param key
+     * @return JSONObject数据
+     */
     fun getAsJSONObject(key: String): JSONObject? {
-        val JSONString = getAsString(key)
-        try {
-            return JSONObject(JSONString)
+        val mJSONString = getAsString(key)
+        return try {
+            JSONObject(mJSONString)
         } catch (e: Exception) {
             e.printStackTrace()
-            return null
+            null
         }
 
     }
@@ -222,7 +220,6 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
      * @param key
      * @return JSONArray数据
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun getAsJSONArray(key: String): JSONArray? {
         val mJSONString = getAsString(key)
         return try {
@@ -259,6 +256,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
                 try {
                     out.flush()
                     out.close()
+                    LogUtils.d("导航图片已缓存")
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
@@ -289,30 +287,30 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
      * @param key
      * @return byte 数据
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun getAsBinary(key: String): ByteArray? {
-        var RAFile: RandomAccessFile? = null
+        var mRAFile: RandomAccessFile? = null
         var removeFile = false
         try {
-            val file = mCache[key]
-            if (!file.exists())
+            val file = mCache.get(key)
+            if (!file.exists()) {
                 return null
-            RAFile = RandomAccessFile(file, "r")
-            val byteArray = ByteArray(RAFile.length().toInt())
-            RAFile.read(byteArray)
-            if (!Utils.isDue(byteArray)) {
-                return Utils.clearDateInfo(byteArray)
+            }
+            mRAFile = RandomAccessFile(file, "r")
+            val byteArray = ByteArray(mRAFile.length().toInt())
+            mRAFile.read(byteArray)
+            return if (!Utils.isDue(byteArray)) {
+                Utils.clearDateInfo(byteArray)
             } else {
                 removeFile = true
-                return null
+                null
             }
         } catch (e: Exception) {
             e.printStackTrace()
             return null
         } finally {
-            if (RAFile != null) {
+            if (mRAFile != null) {
                 try {
-                    RAFile.close()
+                    mRAFile.close()
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
@@ -379,8 +377,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
      * @param key
      * @return Serializable 数据
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    fun getAsObject(key: String): Any? {
+    fun getAsAny(key: String): Any? {
         val data = getAsBinary(key)
         if (data != null) {
             var bais: ByteArrayInputStream? = null
@@ -413,6 +410,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
 
     }
 
+
     // =======================================
     // ============== bitmap 数据 读写 =============
     // =======================================
@@ -424,7 +422,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
      * @param value
      * 保存的bitmap数据
      */
-    private fun put(key: String, value: Bitmap) {
+    fun put(key: String, value: Bitmap) {
         put(key, Utils.Bitmap2Bytes(value)!!)
     }
 
@@ -449,7 +447,6 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
      * @param key
      * @return bitmap 数据
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun getAsBitmap(key: String): Bitmap? {
         return if (getAsBinary(key) == null) {
             null
@@ -527,7 +524,8 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
     fun clear() {
         mCache.clear()
     }
-    inner class ACacheManager private constructor(private val cacheDir: File, private val sizeLimit: Long, private val countLimit: Int) {
+
+    private inner class ACacheManager(private val cacheDir: File, private val sizeLimit: Long, private val countLimit: Int) {
         private val cacheSize = AtomicLong()
         private val cacheCount = AtomicInteger()
         private val lastUsageDates = Collections
@@ -577,7 +575,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
             lastUsageDates[file] = currentTime
         }
 
-        operator fun get(key: String): File {
+         fun get(key: String): File {
             val file = newFile(key)
             val currentTime = System.currentTimeMillis()
             file.setLastModified(currentTime)
@@ -587,7 +585,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
         }
 
         fun newFile(key: String): File {
-            return File(cacheDir, key.hashCode().toString() + "")
+            return File(cacheDir, key.hashCode().toString())
         }
 
         fun remove(key: String): Boolean {

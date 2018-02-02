@@ -9,7 +9,7 @@ import com.chen.chenyuelun.data.network.ParamsMapValue
 class GetBannerAdvertiseManagementRequest(channelId: String) : BaseRequest() {
 
     init {
-        params.put(ParamsMapKey.CMD, ParamsMapValue.CMD_GET_BANNER_ADVERTISE_MANAGEMENT)
-        params.put(ParamsMapKey.CHANNEL_ID, channelId)
+        params[ParamsMapKey.CMD] = ParamsMapValue.CMD_GET_BANNER_ADVERTISE_MANAGEMENT
+        params[ParamsMapKey.CHANNEL_ID] = channelId
     }
 }

@@ -7,7 +7,7 @@
     <color name="transparent50percentwhite">#77ffffff</color>
 
     <!--底部导航栏颜色-->
-    <color name="navigationbar_normal_color">#000000</color>
+    <color name="navigationbar_normal_color">#BCBBBB</color>
     <color name="navigationbar_press_color">#5494ff</color>
 
     <!--彩球蓝-->

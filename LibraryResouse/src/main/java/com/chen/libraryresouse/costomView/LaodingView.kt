@@ -51,35 +51,35 @@ class LoadingView {
     }
 
     constructor(fragment: Fragment) {
-        context = fragment.activity
-        rootView = fragment.activity.window.decorView as FrameLayout
+        context = fragment.activity!!
+        rootView = fragment.activity!!.window.decorView as FrameLayout
 
     }
 
 
     private fun initNoDataView(viewId: Int = R.layout.view_no_data) {
         noDataView = ViewGroup.inflate(context, viewId, null)
-        noDataView!!.layoutParams = getLayoutParams(context!!)
+        noDataView!!.layoutParams = getLayoutParams(context)
     }
 
 
     private fun initLoadingView(viewId: Int = R.layout.view_loading) {
         loadingView = ViewGroup.inflate(context, viewId, null)
-        loadingView!!.layoutParams = getLayoutParams(context!!)
+        loadingView!!.layoutParams = getLayoutParams(context)
     }
 
     private fun initNetInvalidView(listener: View.OnClickListener?, viewId: Int = R.layout.view_net_invalid, clickViewId: Int = R.id.tv_reload) {
         netInvalidView = ViewGroup.inflate(context, viewId, null)
-        netInvalidView!!.layoutParams = getLayoutParams(context!!)
+        netInvalidView!!.layoutParams = getLayoutParams(context)
         netInvalidView!!.findViewById<View>(clickViewId).setOnClickListener {
 
-            if (!isNetworkAvailable(context!!)) {
+            if (!isNetworkAvailable(context)) {
                 //亲，您现在没网
                 toast("亲，现在您没网")
             } else {
                 //有网从新请求网络
                 if (listener != null)
-                    listener!!.onClick(netInvalidView!!.findViewById<View>(clickViewId))
+                    listener.onClick(netInvalidView!!.findViewById<View>(clickViewId))
             }
         }
     }

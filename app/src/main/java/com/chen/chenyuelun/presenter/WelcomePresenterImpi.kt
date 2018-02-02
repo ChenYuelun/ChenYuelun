@@ -1,7 +1,10 @@
 package com.chen.chenyuelun.presenter
 
 import com.chen.chenyuelun.data.model.GetBannerAdvertiseManagementResponse
+import com.chen.chenyuelun.data.model.HomeMenuResponse
 import com.chen.chenyuelun.data.network.request.GetBannerAdvertiseManagementRequest
+import com.chen.chenyuelun.data.network.request.MainMenuRequest
+import com.chen.chenyuelun.utils.NavigationBarUtils
 import com.chen.chenyuelun.view.BaseView
 import com.chen.librarynetwork.transformer.MyDefaultTransformer
 import com.chen.libraryresouse.utils.LogUtils
@@ -20,6 +23,7 @@ class WelcomePresenterImpi (viewImp : BaseView) :BasePresenter{
     }
 
     override fun requestDataFromApi() {
+        sendHomeMenuApi()
         sendGetBannerAdvertiseManagementRequest()
     }
 
@@ -31,19 +35,42 @@ class WelcomePresenterImpi (viewImp : BaseView) :BasePresenter{
     private fun sendGetBannerAdvertiseManagementRequest() {
         val getBannerAdvertiseManagementRequest = GetBannerAdvertiseManagementRequest("xiaomi")
         ServiceFactory.createRxRetrofitService()
-                .get_banner_advertise_management(getBannerAdvertiseManagementRequest.getSign(), getBannerAdvertiseManagementRequest.getRequestMap())
+                .getBannerAdvertiseManagement(getBannerAdvertiseManagementRequest.getSign(), getBannerAdvertiseManagementRequest.getRequestMap())
                 .compose(MyDefaultTransformer<GetBannerAdvertiseManagementResponse>())
                 .subscribeBy(
                         onError = {
-                            LogUtils.d("请求出错：" + it.message)
+                            LogUtils.d("闪屏请求出错：" + it.message)
                             it.printStackTrace()
-                            toast("请求失败")
+                            toast(it.message!!)
                         },
                         onNext = {
-                            toast("请求成功")
+                            LogUtils.d("闪屏请求成功")
                         })
     }
 
+
+
+    private fun sendHomeMenuApi() {
+        val homeMenuRequest = MainMenuRequest()
+        ServiceFactory.createRxRetrofitService()
+                .getHomeMenu(homeMenuRequest.getSign(), homeMenuRequest.getRequestMap())
+                .compose(MyDefaultTransformer<HomeMenuResponse>())
+                .subscribeBy(
+                        onNext = {
+                            LogUtils.d("首页底部导航数据请求成功")
+                            NavigationBarUtils.instance.savaData(it)
+                        },
+
+                        onError = {
+                            LogUtils.d("首页底部导航数据请求出错：" + it.message)
+                            it.printStackTrace()
+                            toast(it.message!!)
+                        }
+
+
+                )
+
+    }
 
     private fun sendVertifyCanBuy() {
 

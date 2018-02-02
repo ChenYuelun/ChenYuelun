@@ -5,9 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chen.libraryresouse.costomView.LoadingView
 import com.chen.libraryresouse.utils.LogUtils
-import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.isNetworkAvailable
 
 
 /**
@@ -39,20 +37,22 @@ abstract class BaseFragment : Fragment() {
 
     open var mPagename = ""
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(getLayoutId(), null, false)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(getLayoutId(),null)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUp()
         initArguments()
         initView()
     }
 
+
     abstract fun getLayoutId(): Int
     protected fun initView() {}
-    protected  fun initArguments() {}
+    protected fun initArguments() {}
 
     private fun setUp() {
         mPagename = this::class.simpleName!!//当前类名
@@ -66,6 +66,5 @@ abstract class BaseFragment : Fragment() {
         super.onResume()
         LogUtils.d("thisPage", mPagename)
     }
-
 
 }

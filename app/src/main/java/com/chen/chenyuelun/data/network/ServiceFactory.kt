@@ -4,10 +4,9 @@ import android.os.Build
 import com.chen.chenyuelun.data.network.ParamsMapValue
 import com.chen.chenyuelun.data.single.AppApplication
 import com.chen.chenyuelun.data.network.RequestApi
-import com.chen.librarynetwork.CAIQR_CLIENT_TYPE
 import com.chen.librarynetwork.InterceptorResponse
 import com.chen.librarynetwork.TrustAllCerts
-import com.chen.libraryresouse.base.BASE_URL_A
+import com.chen.libraryresouse.base.BaseUrl
 import com.chen.libraryresouse.utils.LogUtils
 import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.getAppVersionName
 import com.chen.libraryresouse.utils.PhoneParameterUtils.Companion.getPhoneName
@@ -97,7 +96,7 @@ class ServiceFactory {
                     .client(sClient)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BASE_URL_A)
+                    .baseUrl(BaseUrl.BASE_URL_A)
                     .build()
                     .create(RequestApi::class.java)
         }
@@ -107,7 +106,7 @@ class ServiceFactory {
                     .Builder()
                     .client(sClient)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BASE_URL_A)
+                    .baseUrl(BaseUrl.BASE_URL_A)
                     .build()
                     .create(RequestApi::class.java)
         }

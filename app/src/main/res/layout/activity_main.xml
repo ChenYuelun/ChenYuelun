@@ -1,99 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:clipChildren="false"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/ll_cover1"
+
+    <FrameLayout
+        android:id="@+id/fl_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:id="@+id/rl_cover1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-
-            <ImageView
-                android:id="@+id/img_welcome_icon"
-                android:layout_width="260dp"
-                android:layout_height="260dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/welcome_icon" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:id="@+id/ll_caiqr"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/img_welcome_name"
-                    android:layout_width="60dp"
-                    android:layout_height="29dp"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/welcome_item" />
-
-                <TextView
-                    android:id="@+id/tv_slogan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="当然会实现"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/text666" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_cover2"
+    <android.support.v7.widget.RecyclerView
+        android:clipChildren="false"
+        android:background="@color/bg_999"
+        android:id="@+id/rv_main_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_height="57dp" />
 
-        <ImageView
-            android:id="@+id/iv_welcome"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitXY">
 
-        </ImageView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <include layout="@layout/viewpager_guide" />
-
-    <com.chen.libraryresouse.costomView.FirstScreenCountDownView
-        android:id="@+id/count_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp"
-        android:visibility="gone" />
-</RelativeLayout>
+</LinearLayout>
