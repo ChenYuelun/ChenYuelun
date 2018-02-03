@@ -1,10 +1,8 @@
 package com.chen.chenyuelun.view.activity
 
-import android.os.CountDownTimer
 import android.os.Handler
-import android.view.View
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.presenter.WelcomePresenterImpi
+import com.chen.chenyuelun.presenter.WelcomePresenter
 import com.chen.chenyuelun.view.BaseView
 import com.chen.libraryresouse.base.BaseActiviy
 import com.chen.libraryresouse.constans.SPConstants
@@ -19,14 +17,14 @@ class WelcomeActivity : BaseActiviy(), BaseView {
 
     private lateinit var loginToken: String
     private lateinit var versionName: String
-    private lateinit var presenter: WelcomePresenterImpi
+    private lateinit var presenter: WelcomePresenter
 
     override fun getLayoutId() = R.layout.activity_welcome
 
     override fun getTitleLayout() = null
 
     override fun setUp() {
-        presenter = WelcomePresenterImpi(this)
+        presenter = WelcomePresenter(this)
         versionName = SPUtils.getData(this, SPConstants.VERSION_CODE, "") as String
         loginToken = SPUtils.getData(this, SPConstants.LOGIN_TOKEN, "") as String
     }

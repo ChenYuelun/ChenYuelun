@@ -18,7 +18,7 @@ import io.reactivex.rxkotlin.subscribeBy
 /**
  * Created by chenyuelun on 2018/1/27.
  */
-class WelcomePresenterImpi(viewImp: BaseView) : BasePresenter {
+class WelcomePresenter(viewImp: BaseView) : BasePresenter {
 
     val view = viewImp
 
@@ -86,7 +86,7 @@ class WelcomePresenterImpi(viewImp: BaseView) : BasePresenter {
                         onNext = {
                             if (it.code == 0){
                                 LogUtils.d("首页目录数据请求成功")
-                                AppInfo.instance.homeCatalog = it.resp
+                                AppInfo.instance.homeCatalog = it.resp.toMutableList()
                                 AppInfo.instance.getCacheManager().put(ParamsMapValue.CMD_HOME_CATALOG,it)
                             }else{
                                 LogUtils.d("联网成功，数据失败")

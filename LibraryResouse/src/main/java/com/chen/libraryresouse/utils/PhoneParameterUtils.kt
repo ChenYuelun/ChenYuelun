@@ -289,6 +289,10 @@ class PhoneParameterUtils{
             return  "65"
         }
 
+        fun getChannelName(): String {
+            return "oppo"
+        }
+
     }
 }
 

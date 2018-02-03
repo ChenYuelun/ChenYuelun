@@ -49,6 +49,7 @@ abstract class BaseFragment : Fragment() {
         setUp()
         initArguments()
         initView()
+        requestApi()
     }
 
     abstract fun getTitleLyout(): View?

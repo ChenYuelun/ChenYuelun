@@ -256,7 +256,6 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
                 try {
                     out.flush()
                     out.close()
-                    LogUtils.d("导航图片已缓存")
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }

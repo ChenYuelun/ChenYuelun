@@ -2,24 +2,17 @@ package com.chen.chenyuelun.view.activity
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.CountDownTimer
 import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
-import android.view.View
-import android.widget.ImageView
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.adapter.HomeMenuRvAdapter
-import com.chen.chenyuelun.data.model.HomeMenuResponse
-import com.chen.chenyuelun.data.single.AppApplication
-import com.chen.chenyuelun.data.single.AppInfo
 import com.chen.chenyuelun.utils.IntentParams
 import com.chen.chenyuelun.utils.NavigationBarUtils
 import com.chen.chenyuelun.view.fragment.*
 import com.chen.libraryresouse.base.BaseActiviy
 import com.chen.libraryresouse.base.BaseFragment
-import com.chen.libraryresouse.base.MainTag
+import com.chen.libraryresouse.base.EnumMainTag
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -40,15 +33,15 @@ class MainActivity : BaseActiviy() {
         rv_main_navigation.adapter = adapter
         navigationData.forEach {
             when (it.postionTag) {
-                MainTag.FORECAST.tag -> fragmentMap[it.postionTag] = MainForacastFragment()
-                MainTag.PLAN.tag -> fragmentMap[it.postionTag] = MainPlanFragment()
-                MainTag.SOCIAL.tag -> fragmentMap[it.postionTag] = MainSocialFragment()
-                MainTag.ME.tag -> fragmentMap[it.postionTag] = MainMeFragment()
-                MainTag.WEB.tag -> fragmentMap[it.postionTag] = MainWebFragment()
+                EnumMainTag.FORECAST.tag -> fragmentMap[it.postionTag] = MainForacastFragment()
+                EnumMainTag.PLAN.tag -> fragmentMap[it.postionTag] = MainPlanFragment()
+                EnumMainTag.SOCIAL.tag -> fragmentMap[it.postionTag] = MainSocialFragment()
+                EnumMainTag.ME.tag -> fragmentMap[it.postionTag] = MainMeFragment()
+                EnumMainTag.WEB.tag -> fragmentMap[it.postionTag] = MainWebFragment()
             }
         }
 
-        adapter.changSlectItem(MainTag.FORECAST.tag)
+        adapter.changSlectItem(EnumMainTag.FORECAST.tag)
     }
 
     override fun requestApi() {
@@ -59,7 +52,7 @@ class MainActivity : BaseActiviy() {
     private var showedFragment: BaseFragment? = null
 
     //根据tag显示要展示的界面
-    fun changeFragmentShow(tag: String = MainTag.FORECAST.tag) {
+    fun changeFragmentShow(tag: String = EnumMainTag.FORECAST.tag) {
         //根据tag获得将要显示的fragment
         val baseFragment = fragmentMap[tag]
         //如果为空  直接返回
@@ -112,7 +105,7 @@ class MainActivity : BaseActiviy() {
     //伴生对象 里面类似于java的静态属性/方法
     companion object {
         //启动本fragment的方法
-        fun start(context: Context, tag: String = MainTag.FORECAST.tag) {
+        fun start(context: Context, tag: String = EnumMainTag.FORECAST.tag) {
             val intent = Intent(context, MainActivity::class.java)
             intent.putExtra(IntentParams.MAIN_TAG, tag)
             context.startActivity(intent)

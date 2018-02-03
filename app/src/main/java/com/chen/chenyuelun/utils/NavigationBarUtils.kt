@@ -9,7 +9,7 @@ import com.chen.chenyuelun.data.model.HomeMenuResponse
 import com.chen.chenyuelun.data.network.ParamsMapValue
 import com.chen.chenyuelun.data.single.AppApplication
 import com.chen.chenyuelun.data.single.AppInfo
-import com.chen.libraryresouse.base.MainTag
+import com.chen.libraryresouse.base.EnumMainTag
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -58,7 +58,7 @@ class NavigationBarUtils private constructor() {
                 idToBitmap(R.drawable.analyse_press),
                 R.color.navigationbar_normal_color,
                 R.color.navigationbar_press_color,
-                MainTag.FORECAST.tag,
+                EnumMainTag.FORECAST.tag,
                 false
         ))
         items.add(HomeMenuItemBean(
@@ -67,7 +67,7 @@ class NavigationBarUtils private constructor() {
                 idToBitmap(R.drawable.plan_press),
                 R.color.navigationbar_normal_color,
                 R.color.navigationbar_press_color,
-                MainTag.FORECAST.tag,
+                EnumMainTag.FORECAST.tag,
                 false
         ))
         items.add(HomeMenuItemBean(
@@ -76,7 +76,7 @@ class NavigationBarUtils private constructor() {
                 idToBitmap(R.drawable.information_press),
                 R.color.navigationbar_normal_color,
                 R.color.navigationbar_press_color,
-                MainTag.FORECAST.tag,
+                EnumMainTag.FORECAST.tag,
                 false
         ))
         items.add(HomeMenuItemBean(
@@ -85,7 +85,7 @@ class NavigationBarUtils private constructor() {
                 idToBitmap(R.drawable.me_press),
                 R.color.navigationbar_normal_color,
                 R.color.navigationbar_press_color,
-                MainTag.FORECAST.tag,
+                EnumMainTag.FORECAST.tag,
                 false
         ))
 

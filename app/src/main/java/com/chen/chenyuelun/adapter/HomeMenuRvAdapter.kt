@@ -1,15 +1,13 @@
 package com.chen.chenyuelun.adapter
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.data.model.HomeMenuItemBean
 import com.chen.chenyuelun.view.activity.MainActivity
-import com.chen.libraryresouse.base.MainTag
+import com.chen.libraryresouse.base.EnumMainTag
 import com.chen.libraryresouse.utils.DensityUtils
 import kotlinx.android.synthetic.main.item_main_menu.view.*
 
@@ -33,7 +31,7 @@ class HomeMenuRvAdapter(private val context: MainActivity, private val data: Lis
             holder.itemView.tv_mainMenu_item.setTextColor(itemData.normalColor)
         }
 
-        if (itemData.postionTag == MainTag.WEB.tag) {
+        if (itemData.postionTag == EnumMainTag.WEB.tag) {
             val params = holder.itemView.iv_mainMenu_item.layoutParams as RelativeLayout.LayoutParams
             params.height = DensityUtils.dip2px(context, 80f)
             params.width = DensityUtils.dip2px(context, 100f)
