@@ -19,5 +19,5 @@ data class HomeCatalogBean(
 		@SerializedName("url") val url: String, //caiqiu_focus_04
 		@SerializedName("order") val order: Int, //1
 		@SerializedName("desc") val desc: String, //焦点图
-		@SerializedName("backup") val backup: Any //null
+		@SerializedName("backup") val backup: String //null
 ):Serializable

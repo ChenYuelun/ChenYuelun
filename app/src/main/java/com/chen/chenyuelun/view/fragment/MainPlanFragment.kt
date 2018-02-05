@@ -13,7 +13,6 @@ class MainPlanFragment: BaseFragment(){
     override fun getLayoutId()= R.layout.layout_fragment_main_plan
 
     override fun requestApi() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

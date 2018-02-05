@@ -32,5 +32,6 @@ data class Left(
 data class Right(
 		@SerializedName("color") val color: String, //FF4500
 		@SerializedName("title") val title: String, //02月02日
-		@SerializedName("content") val content: String //彩球连续命中7场
+		@SerializedName("content") val content: String, //彩球连续命中7场
+		@SerializedName("content_01") val content_01: String //彩球连续命中7场
 ):Serializable
