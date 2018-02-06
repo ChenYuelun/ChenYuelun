@@ -57,29 +57,26 @@ class WebH5Activity : BaseActiviy() {
     @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
 
-        //webView 相关设置
-        val mWebViewSettings = mWebView.getSettings()
-
-        //在安卓5.0之后，默认不允许加载http与https混合内容，需要设置webview允许其加载混合网络协议内容
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            mWebViewSettings.setMixedContentMode(WebSettings.)
-        }
-
-        mWebViewSettings.setJavaScriptEnabled(true)
-        mWebViewSettings.setBlockNetworkImage(false);//解决图片不显示
-        mWebViewSettings.setUseWideViewPort(true)//设置此属性，可任意比例缩放
-        mWebViewSettings.setLoadWithOverviewMode(true)
-        mWebViewSettings.setRenderPriority(WebSettings.RenderPriority.HIGH)
-//        mWebView.addJavascriptInterface(WebViewShareInterface(this), "shareAndroid")
-        mWebViewSettings.setCacheMode(WebSettings.LOAD_NO_CACHE)  //设置 缓存模式
-        //支持localStorage
-        mWebViewSettings.setDomStorageEnabled(true)// 开启 DOM storage API 功能
-        mWebViewSettings.setAppCacheMaxSize((1024 * 1024 * 8).toLong())
-        val appCachePath = applicationContext.cacheDir.absolutePath
-        mWebViewSettings.setAppCachePath(appCachePath)
-        mWebViewSettings.setAllowFileAccess(true)//设置可以访问文件
-        mWebViewSettings.setAppCacheEnabled(true)
-        mWebViewSettings.setBlockNetworkImage(true)
+        val webSetting = mWebView.settings
+        webSetting.allowFileAccess = true
+        webSetting.layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
+        webSetting.setSupportZoom(true)
+        webSetting.builtInZoomControls = true
+        webSetting.useWideViewPort = true
+        webSetting.setSupportMultipleWindows(false)
+        // webSetting.setLoadWithOverviewMode(true);
+        webSetting.setAppCacheEnabled(true)
+        // webSetting.setDatabaseEnabled(true);
+        webSetting.domStorageEnabled = true
+        webSetting.javaScriptEnabled = true
+        webSetting.setGeolocationEnabled(true)
+        webSetting.setAppCacheMaxSize(java.lang.Long.MAX_VALUE)
+        webSetting.setAppCachePath(this.getDir("appcache", 0).path)
+        webSetting.databasePath = this.getDir("databases", 0).path
+        webSetting.setGeolocationDatabasePath(this.getDir("geolocation", 0)
+                .path)
+        // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
+        webSetting.pluginState = WebSettings.PluginState.ON_DEMAND
 //        mWebView.setWebChromeClient(MyWebChromeClient())
 //        mWebView.webViewClient = MyWebViewClient()
         mWebView.webViewClient = (object : WebViewClient() {
@@ -116,10 +113,7 @@ class WebH5Activity : BaseActiviy() {
             }
 
         }
-        mWebViewSettings.setDatabaseEnabled(true)//开启 database storage API 功能
-        val dbPath = getDir("database", Context.MODE_PRIVATE).path
-        mWebViewSettings.setDatabasePath(dbPath)//设置  Application Caches 缓存目录
-//        mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+
     }
 
     override fun getLayoutId() = R.layout.activity_web_h5
