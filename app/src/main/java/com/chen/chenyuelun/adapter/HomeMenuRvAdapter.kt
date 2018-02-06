@@ -33,18 +33,17 @@ class HomeMenuRvAdapter(private val context: MainActivity, private val data: Lis
 
         if (itemData.postionTag == EnumMainTag.WEB.tag) {
             val params = holder.itemView.iv_mainMenu_item.layoutParams as RelativeLayout.LayoutParams
-            params.height = DensityUtils.dip2px(context, 80f)
-            params.width = DensityUtils.dip2px(context, 100f)
-            params.topMargin = DensityUtils.dip2px(context, -30f)
+            params.height = DensityUtils.dip2px(context, 80f).toInt()
+            params.width = DensityUtils.dip2px(context, 100f).toInt()
+            params.topMargin = DensityUtils.dip2px(context, -30f).toInt()
             holder.itemView.tv_mainMenu_item.visibility = View.GONE
         } else {
             val params = holder.itemView.iv_mainMenu_item.layoutParams as RelativeLayout.LayoutParams
-            params.height = DensityUtils.dip2px(context, 32f)
-            params.width = DensityUtils.dip2px(context, 32f)
-            params.topMargin = DensityUtils.dip2px(context, 0f)
+            params.height = DensityUtils.dip2px(context, 32f).toInt()
+            params.width = DensityUtils.dip2px(context, 32f).toInt()
+            params.topMargin = DensityUtils.dip2px(context, 0f).toInt()
             holder.itemView.tv_mainMenu_item.visibility = View.VISIBLE
         }
-//        holder.itemView.iv_mainMenu_item.requestLayout()
         holder.itemView.setOnClickListener {
 
             if (!itemData.isSelected) {

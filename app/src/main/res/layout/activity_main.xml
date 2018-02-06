@@ -13,7 +13,6 @@
 
     <android.support.v7.widget.RecyclerView
         android:clipChildren="false"
-        android:background="@color/bg_999"
         android:id="@+id/rv_main_navigation"
         android:layout_width="match_parent"
         android:layout_height="57dp" />

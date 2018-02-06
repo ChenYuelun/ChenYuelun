@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
 
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
 
@@ -27,7 +27,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -39,11 +39,7 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     //rxjava与retrofit合用  转换
     api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    //rxjava
-    api 'io.reactivex.rxjava2:rxjava:2.1.1'
-    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    api 'io.reactivex:rxkotlin:2.+'
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     implementation project(':LibraryResouse')
 }
 repositories {

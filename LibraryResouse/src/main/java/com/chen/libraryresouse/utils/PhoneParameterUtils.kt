@@ -262,7 +262,7 @@ class PhoneParameterUtils{
         fun getLayoutParams(context: Context): FrameLayout.LayoutParams {
             val layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT)
-            val margin = DensityUtils.dip2px(context,50f) + getPhoneStatusBarHeight(context.resources)
+            val margin = DensityUtils.dip2px(context,50f).toInt() + getPhoneStatusBarHeight(context.resources)
             layoutParams.setMargins(0, margin, 0, 0)
             return layoutParams
         }

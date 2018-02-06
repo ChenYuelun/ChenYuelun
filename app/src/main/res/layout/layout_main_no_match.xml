@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_noMatchList"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
-    <TextView
-        android:text="无比赛数据"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0.5dp"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:visibility="visible">
 
+    <Button
+        android:id="@+id/btn_noMatchList"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/yuanjiao_blue_btn"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="暂无比赛,去圈子看看"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:visibility="visible" />
 </LinearLayout>
+

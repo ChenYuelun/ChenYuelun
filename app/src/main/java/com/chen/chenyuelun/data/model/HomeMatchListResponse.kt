@@ -42,7 +42,7 @@ data class FootballItem(
         @SerializedName("odds") val odds: FootballOdds,
         @SerializedName("match_time") val matchTime: String, //2018-02-03 20:00:00 +0800
         @SerializedName("okooo_live") val okoooLive: String,
-        @SerializedName("season_id") val seasonId: Int //4482
+        @SerializedName("season_id") val seasonId: String //4482
 ) : Serializable
 
 data class FootballOdds(

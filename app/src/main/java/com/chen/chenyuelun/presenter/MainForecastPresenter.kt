@@ -27,7 +27,6 @@ class MainForecastPresenter(val view: BaseView, val data: HomeForecastData) : Ba
             val catalogCache = AppInfo.instance.getCacheManager().getAsAny(ParamsMapValue.CMD_HOME_CATALOG)
             if (catalogCache != null && catalogCache is HomeCatalogResponse) {
                 AppInfo.instance.homeCatalog = catalogCache.resp.toMutableList()
-                AppInfo.instance.homeCatalog!!.sortBy { it.order.dec() }
             } else {
                 defaultCatalogData()
             }
@@ -167,7 +166,6 @@ class MainForecastPresenter(val view: BaseView, val data: HomeForecastData) : Ba
                             if (it.code == 0) {
                                 LogUtils.d("首页目录数据请求成功")
                                 AppInfo.instance.homeCatalog = it.resp.toMutableList()
-                                AppInfo.instance.homeCatalog!!.sortBy { it.order.dec() }
                                 AppInfo.instance.getCacheManager().put(ParamsMapValue.CMD_HOME_CATALOG, it)
                                 refreshAllModelData()
                             } else {

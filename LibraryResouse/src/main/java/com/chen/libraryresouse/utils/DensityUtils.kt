@@ -34,9 +34,9 @@ class DensityUtils{
         /**
          * dip转为 px
          */
-        fun dip2px(context: Context,dipValue: Float): Int {
+        fun dip2px(context: Context,dipValue: Float): Float {
             val scale = context.resources.displayMetrics.density
-            return (dipValue * scale + 0.5f).toInt()
+            return (dipValue * scale + 0.5f)
         }
 
 
@@ -51,9 +51,9 @@ class DensityUtils{
         /**
          * 将sp值转换为px值，保证文字大小不变
          */
-        fun sp2px(context: Context,spValue: Float): Int {
+        fun sp2px(context: Context,spValue: Float): Float {
             val fontScale =  context.resources.displayMetrics.scaledDensity
-            return (spValue * fontScale + 0.5f).toInt()
+            return (spValue * fontScale + 0.5f)
         }
     }
 }

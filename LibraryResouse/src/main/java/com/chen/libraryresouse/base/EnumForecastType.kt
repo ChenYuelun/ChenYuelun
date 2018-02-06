@@ -14,7 +14,7 @@ enum class EnumForecastType(val tag :String ,val type :Int){
     TYPE_BASKET_LIVE("home_basketball_match_live",6),
     TYPE_RECORD("home_result_statistics",7),
     TYPE_GUESS_YOU_LIKE("home_guess_you_like",8),
-    TYPE_MATCH_TAB("home_match_list",9),
+    TYPE_MATCH_LIST("home_match_list",9),
     TYPE_MATCHS("matchs",10),
     TYPE_NO_MATCHS("matchs",12);
 

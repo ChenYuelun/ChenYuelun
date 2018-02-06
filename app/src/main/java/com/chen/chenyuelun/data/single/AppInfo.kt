@@ -8,6 +8,10 @@ import com.chen.libraryresouse.utils.CacheManager
 class AppInfo private constructor(){
 
     var homeCatalog : MutableList<HomeCatalogBean>? = null
+        get() {
+            field!!.sortBy({ it.order.dec() })
+            return field
+        }
 
     companion object {
         val instance = AppInfo()
