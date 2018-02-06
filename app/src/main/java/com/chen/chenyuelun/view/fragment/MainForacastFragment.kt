@@ -1,11 +1,14 @@
 package com.chen.chenyuelun.view.fragment
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.adapter.MainForecastRvAdapter
 import com.chen.chenyuelun.data.model.HomeForecastData
 import com.chen.chenyuelun.presenter.MainForecastPresenter
 import com.chen.chenyuelun.view.BaseView
+import com.chen.chenyuelun.view.activity.WebH5Activity
 import com.chen.libraryresouse.base.BaseFragment
 import kotlinx.android.synthetic.main.layout_fragment_main_foracast.*
 import kotlinx.android.synthetic.main.refresh_layout.*
@@ -27,7 +30,11 @@ class MainForacastFragment : BaseFragment(), BaseView {
         presenter.readDataFromCache()
         val adapter = MainForecastRvAdapter(context!!, data)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context!!,LinearLayoutManager.VERTICAL,false)
+        recyclerView.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
+        iv_serach_forecast.setOnClickListener {
+            startActivity(Intent(context,WebH5Activity::class.java))
+
+        }
     }
 
     override fun requestApi() {
@@ -42,4 +49,5 @@ class MainForacastFragment : BaseFragment(), BaseView {
     override fun onSeccuess() {
         recyclerView.adapter.notifyDataSetChanged()
     }
+
 }

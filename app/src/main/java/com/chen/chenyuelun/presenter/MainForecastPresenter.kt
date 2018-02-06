@@ -95,7 +95,7 @@ class MainForecastPresenter(val view: BaseView, val data: HomeForecastData) : Ba
                         if (hotMatchData != null && hotMatchData is HotBettingResponse) {
                             data.hotMatchs = hotMatchData.resp[0]
                         } else {
-                            data.hotMatchs = HotMatchs(5, 0, "热门比赛", "", listOf(), listOf())
+                            data.hotMatchs = HotMatchs(5, 0, "热门比赛", "","", listOf(), listOf())
                         }
                     }
                     EnumForecastType.TYPE_FOOT_LIVE.tag -> {

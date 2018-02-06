@@ -9,7 +9,9 @@ class AppInfo private constructor(){
 
     var homeCatalog : MutableList<HomeCatalogBean>? = null
         get() {
-            field!!.sortBy({ it.order.dec() })
+            if(field != null){
+                field!!.sortBy({ it.order.dec() })
+            }
             return field
         }
 

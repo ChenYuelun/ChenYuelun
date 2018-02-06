@@ -3,6 +3,7 @@
     package="com.chen.chenyuelun">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".data.single.AppApplication"
         android:allowBackup="true"
@@ -18,10 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.activity.MainActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".view.activity.WebH5Activity"></activity>
     </application>
 
 </manifest>

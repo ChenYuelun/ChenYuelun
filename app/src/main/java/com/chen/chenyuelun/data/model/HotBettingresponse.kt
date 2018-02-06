@@ -20,6 +20,7 @@ data class HotMatchs(
 		@SerializedName("type") val type: Int, //1
 		@SerializedName("title") val title: String, //快速投注-单关
 		@SerializedName("content") val content: String, //猜对一场就中奖
+		@SerializedName("image") val image: String, //猜对一场就中奖
 		@SerializedName("content_football") val contentFootball: List<FootballItemBean>,
 		@SerializedName("content_basketball_list") val contentBasketballList: List<Any>
 ):Serializable

@@ -37,8 +37,6 @@ dependencies {
     //没有使用特殊Header，可以不加这行
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5-alpha-1'
 
-
-
     //UT测试
     testImplementation 'org.robolectric:robolectric:3.6.1'
     testImplementation 'junit:junit:4.12'

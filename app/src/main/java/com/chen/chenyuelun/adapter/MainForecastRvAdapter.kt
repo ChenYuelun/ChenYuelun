@@ -9,16 +9,20 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.data.model.HomeForecastData
 import com.chen.chenyuelun.data.single.AppInfo
 import com.chen.libraryresouse.base.EnumForecastType
+import com.chen.libraryresouse.costomView.AutoScrollViewPager
+import com.chen.libraryresouse.utils.DensityUtils
 import com.chen.libraryresouse.utils.GlideImageLoader
 import com.chen.libraryresouse.utils.ImageLoader
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.layout_main_advertising.view.*
 import kotlinx.android.synthetic.main.layout_main_banner.view.*
 import kotlinx.android.synthetic.main.layout_main_guess_you_like.view.*
+import kotlinx.android.synthetic.main.layout_main_hot_matchs.view.*
 import kotlinx.android.synthetic.main.layout_main_marquee.view.*
 import kotlinx.android.synthetic.main.layout_main_match_list.view.*
 import kotlinx.android.synthetic.main.layout_main_record.view.*
@@ -104,10 +108,10 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
                 }
             }
             EnumForecastType.TYPE_TOPNAVIGATION.type -> {
-                if (holder!!.itemView.rv_top_navigation.adapter == null){
+                if (holder!!.itemView.rv_top_navigation.adapter == null) {
                     holder.itemView.rv_top_navigation.adapter = TopNavigationRvAdapter(context, data.topNavigationList)
                     holder.itemView.rv_top_navigation.layoutManager = GridLayoutManager(context, data.topNavigationList.iconTopList.size)
-                }else{
+                } else {
                     holder.itemView.rv_top_navigation.adapter.notifyDataSetChanged()
                 }
             }
@@ -118,7 +122,7 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
                 }
                 holder!!.itemView.marqueeText.setContent(contentList)
                 ImageLoader.loadImage(data.marqueeList.image, holder.itemView.iv_marquee)
-                holder.itemView.setOnClickListener{
+                holder.itemView.setOnClickListener {
                     toast(data.marqueeList.title)
                 }
             }
@@ -129,6 +133,22 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
                 }
             }
             EnumForecastType.TYPE_HOT_MATCH.type -> {
+                if (data.hotMatchs.contentFootball != null && data.hotMatchs.contentFootball.isNotEmpty()) {
+                    holder!!.itemView.iv_hot_nodata.visibility = View.GONE
+                    holder.itemView.ll_hot_match.visibility = View.VISIBLE
+                    holder.itemView.ll_viewPage.removeAllViews();
+                    val viewPager = AutoScrollViewPager(context)
+                    viewPager.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DensityUtils.dip2px(context,120f).toInt())
+                    holder.itemView.ll_viewPage.addView(viewPager)
+
+
+                } else {
+                    holder!!.itemView.iv_hot_nodata.visibility = View.VISIBLE
+                    holder.itemView.ll_hot_match.visibility = View.GONE
+                    if (!TextUtils.isEmpty(data.hotMatchs.image))
+                        ImageLoader.loadImage(data.hotMatchs.image, holder.itemView.iv_hot_nodata)
+                }
+
             }
             EnumForecastType.TYPE_FOOT_LIVE.type -> {
             }
