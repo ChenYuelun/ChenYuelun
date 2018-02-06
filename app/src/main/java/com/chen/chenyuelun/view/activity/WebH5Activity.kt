@@ -39,6 +39,9 @@ class WebH5Activity : BaseActiviy() {
                 if (progress >= 0) {
                     webProgress.visibility = View.VISIBLE
                     webProgress.progress = progress
+                    if (progress >=99){
+                        webProgress.visibility = View.GONE
+                    }
                 } else {
                     webProgress.visibility = View.GONE
                 }
