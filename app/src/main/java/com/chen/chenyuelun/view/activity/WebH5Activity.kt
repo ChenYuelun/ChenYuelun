@@ -6,7 +6,9 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Handler
 import android.text.TextUtils
+import android.view.KeyEvent
 import android.view.View
+import android.widget.FrameLayout
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.presenter.MainPresenter
 import com.chen.chenyuelun.presenter.WebPresenter
@@ -30,11 +32,13 @@ class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
     var loadUrl = ""
     val UPDATA_PROGRESS = 0
     val UPDATA_TITLE = 1
-    override fun getTitleLayout() = titleLayout
 
+    override fun getLayoutId() = R.layout.activity_web_h5
+    override fun getTitleLayout() = titleLayout
+    var mWebView :WebView? = null
     override fun setUp() {
         initWebView()
-        mWebView.loadUrl("https://m.baidu.com/")
+        mWebView!!.loadUrl("https://m.baidu.com/")
     }
 
     val handler = Handler() {
@@ -62,10 +66,11 @@ class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
         return@Handler true
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
-
-        val webSetting = mWebView.settings
+        mWebView = WebView(this)
+        fl_content.addView(mWebView,0,FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT))
+        val webSetting = mWebView!!.settings
         webSetting.allowFileAccess = true
         webSetting.layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
         webSetting.setSupportZoom(true)
@@ -87,7 +92,7 @@ class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
         webSetting.pluginState = WebSettings.PluginState.ON_DEMAND
 //        mWebView.setWebChromeClient(MyWebChromeClient())
 //        mWebView.webViewClient = MyWebViewClient()
-        mWebView.webViewClient = (object : WebViewClient() {
+        mWebView!!.webViewClient = (object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 handler.sendMessage(handler.obtainMessage(UPDATA_PROGRESS,0))
                 super.onPageStarted(view, url, favicon)
@@ -102,7 +107,7 @@ class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
                 p1!!.proceed()
             }
         })
-        mWebView.webChromeClient = object : WebChromeClient() {
+        mWebView!!.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 handler.sendMessage(handler.obtainMessage(UPDATA_PROGRESS,newProgress))
                 super.onProgressChanged(view, newProgress)
@@ -124,8 +129,25 @@ class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
 
     }
 
-    override fun getLayoutId() = R.layout.activity_web_h5
 
+
+    fun goBack() : Boolean{
+        if (mWebView != null && mWebView!!.canGoBack()){
+            mWebView!!.goBack()
+            return true
+        }else{
+            return false
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            if (goBack()){
+                return true
+            }
+        }
+        return super.onKeyDown(keyCode, event)
+    }
 
     class MyWebChromeClient : WebChromeClient() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {

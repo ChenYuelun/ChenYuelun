@@ -47,11 +47,7 @@ class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IVi
         mPresenter.fetch()
     }
     override fun  showData(data: Any) {
-        if (data is List<*>){
-            if (data.isNotEmpty() && data[0] is HomeMenuItemBean){
-                initNavigationAndFragments(data as List<HomeMenuItemBean>)
-            }
-        }
+
     }
 
     fun initNavigationAndFragments(navigationData :List<HomeMenuItemBean>){
