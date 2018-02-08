@@ -31,6 +31,7 @@ class WelcomeActivity : BaseActiviy<IView, WelcomePresenter<IView>>(), IView {
     override fun setUp() {
         versionName = SPUtils.getData(this, SPConstants.VERSION_CODE, "") as String
         loginToken = SPUtils.getData(this, SPConstants.LOGIN_TOKEN, "") as String
+        mPresenter.fetch()
     }
 
 

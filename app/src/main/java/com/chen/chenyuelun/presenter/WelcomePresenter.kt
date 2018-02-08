@@ -22,6 +22,15 @@ class WelcomePresenter<T : IView> : IPrsenter<T>() {
             }
 
         })
+        mModel.loadNetwork(object :IModel.OnDataLoadListener<String>{
+            override fun onComplete(data: String) {
+                if (mViewRef.get()!= null){
+                    mViewRef.get()!!.showData(data)
+                }
+
+            }
+
+        })
 
     }
 

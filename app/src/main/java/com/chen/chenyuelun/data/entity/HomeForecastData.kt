@@ -3,8 +3,7 @@ package com.chen.chenyuelun.data.entity
 /**
  * Created by chenyuelun on 2018/2/3.
  */
- class HomeForecastData {
-
+class HomeForecastData {
 
     lateinit var caiqiuFocusList: CaiqiuFocusList
     lateinit var topNavigationList: TopNavigationList
@@ -13,9 +12,26 @@ package com.chen.chenyuelun.data.entity
     lateinit var recordList: RecordBean
     lateinit var advertisBean: AdvertisBean
     lateinit var guessYouLikeList: SeasonList
-    val footballMatchs: MutableList<FootballItem> = mutableListOf()
-    val basketballMatchs: MutableList<BasketballItem> = mutableListOf()
-    var footballLiveUrl: String = ""
-    var basketballLiveUrl: String = ""
+    val footballMatchs = FootballMatchs()
+    val basketballMatchs = BasketballMatchs()
+    val footballLiveUrl = FootballLiveUrl("")
+    val basketballLiveUrl = BasketballLiveUrl("")
 
 }
+
+data class FootballMatchs(
+        val matchs: MutableList<FootballItem> = mutableListOf()
+)
+
+data class BasketballMatchs(
+        val matchs: MutableList<BasketballItem> = mutableListOf()
+)
+
+
+data class FootballLiveUrl(
+        var url: String
+)
+
+data class BasketballLiveUrl(
+        var url: String
+)

@@ -3,6 +3,7 @@ package com.chen.chenyuelun.view.activity
 import android.content.Context
 import android.content.Intent
 import android.os.CountDownTimer
+import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
 import com.chen.chenyuelun.R
@@ -11,10 +12,7 @@ import com.chen.chenyuelun.data.entity.HomeMenuItemBean
 import com.chen.chenyuelun.presenter.MainPresenter
 import com.chen.chenyuelun.utils.IntentParams
 import com.chen.chenyuelun.view.fragment.*
-import com.chen.libraryresouse.base.BaseActiviy
-import com.chen.libraryresouse.base.BaseFragment
-import com.chen.libraryresouse.base.EnumMainTag
-import com.chen.libraryresouse.base.IView
+import com.chen.libraryresouse.base.*
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,10 +21,10 @@ class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IVi
 
     private lateinit var navigationData :List<HomeMenuItemBean>
 
-    private val fragmentMap = mutableMapOf<String, BaseFragment>()
+    private val fragmentMap = mutableMapOf<String, Fragment>()
 
     //正在前台的fragment
-    private var showedFragment: BaseFragment? = null
+    private var showedFragment: Fragment? = null
 
     override fun getLayoutId() = R.layout.activity_main
 
@@ -57,7 +55,7 @@ class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IVi
         rv_main_navigation.adapter = adapter
         navigationData.forEach {
             when (it.postionTag) {
-                EnumMainTag.FORECAST.tag -> fragmentMap[it.postionTag] = MainForacastFragment()
+                EnumMainTag.FORECAST.tag -> this.fragmentMap[it.postionTag] = MainForacastFragment()
                 EnumMainTag.PLAN.tag -> fragmentMap[it.postionTag] = MainPlanFragment()
                 EnumMainTag.SOCIAL.tag -> fragmentMap[it.postionTag] = MainSocialFragment()
                 EnumMainTag.ME.tag -> fragmentMap[it.postionTag] = MainMeFragment()
@@ -73,16 +71,16 @@ class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IVi
     //根据tag显示要展示的界面
     fun changeFragmentShow(tag: String = EnumMainTag.FORECAST.tag) {
         //根据tag获得将要显示的fragment
-        val baseFragment = fragmentMap[tag]
+        val fragment = fragmentMap[tag]
         //如果为空  直接返回
-        if (baseFragment == showedFragment) return
+        if (fragment == showedFragment) return
 
-        if (baseFragment != null) {
+        if (fragment != null) {
             //开启事务
             val transaction = supportFragmentManager.beginTransaction()
-            if (!baseFragment.isAdded) {
+            if (!fragment.isAdded) {
                 //将要添加的fragment未添加到布局
-                transaction.add(R.id.fl_main, baseFragment, tag)
+                transaction.add(R.id.fl_main, fragment, tag)
                 if (showedFragment != null)
                 //隐藏上次显示的
                     transaction.hide(showedFragment)
@@ -90,9 +88,9 @@ class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IVi
                 //隐藏上次显示的
                 transaction.hide(showedFragment)
                 //显示
-                transaction.show(baseFragment)
+                transaction.show(fragment)
             }
-            showedFragment = baseFragment
+            showedFragment = fragment
             //提交事务
             transaction.commit()
         }

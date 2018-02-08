@@ -99,10 +99,10 @@ class MainForecastPresenter(val view: BaseView, val data: HomeForecastData) : Ba
                         }
                     }
                     EnumForecastType.TYPE_FOOT_LIVE.tag -> {
-                        data.footballLiveUrl = it.backup
+                        data.footballLiveUrl.url = it.backup
                     }
                     EnumForecastType.TYPE_BASKET_LIVE.tag -> {
-                        data.footballLiveUrl = it.backup
+                        data.basketballLiveUrl.url = it.backup
                     }
                     EnumForecastType.TYPE_RECORD.tag -> {
                         val recordData = AppInfo.instance.getCacheManager().getAsAny(CMD_HOME_RESULT)
@@ -330,10 +330,10 @@ class MainForecastPresenter(val view: BaseView, val data: HomeForecastData) : Ba
                 .subscribeBy(
                         onNext = {
                             if (it.code == 0) {
-                                data.footballMatchs.clear()
-                                data.footballMatchs.addAll(it.resp[0].football)
-                                data.basketballMatchs.clear()
-                                data.basketballMatchs.addAll(it.resp[0].basketball)
+                                data.footballMatchs.matchs.clear()
+                                data.footballMatchs.matchs.addAll(it.resp[0].football)
+                                data.basketballMatchs.matchs.clear()
+                                data.basketballMatchs.matchs.addAll(it.resp[0].basketball)
                                 LogUtils.d("首页比赛数据请求成功，code = " + it.code)
                                 AppInfo.instance.getCacheManager().put(ParamsMapValue.CMD_HOME_CATALOG, it)
 

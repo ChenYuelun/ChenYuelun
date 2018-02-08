@@ -34,10 +34,10 @@ import com.chen.libraryresouse.utils.PhoneParameterUtils
  *
  *说明：
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<V,P : IPrsenter<V>> : Fragment() {
 
     open var mPagename = ""
-
+    open lateinit var mPresenter :P
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutId(),null)
@@ -45,18 +45,23 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mPresenter = createPresenter()
+        mPresenter.attach(this as V)
         PhoneParameterUtils.setTitleLayout(context!!,getTitleLyout())
         setUp()
         initArguments()
         initView()
-        requestApi()
     }
+
+    abstract fun createPresenter(): P
 
     abstract fun getTitleLyout(): View?
 
 
     abstract fun getLayoutId(): Int
+
     protected fun initView() {}
+
     protected fun initArguments() {}
 
     open fun setUp() {
@@ -65,11 +70,13 @@ abstract class BaseFragment : Fragment() {
     }
 
 
-    abstract fun requestApi()
-
     override fun onResume() {
         super.onResume()
         LogUtils.d("thisPage", mPagename)
     }
 
+    override fun onDestroy() {
+        mPresenter.detach()
+        super.onDestroy()
+    }
 }

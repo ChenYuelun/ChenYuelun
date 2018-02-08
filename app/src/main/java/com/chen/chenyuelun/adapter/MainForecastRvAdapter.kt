@@ -158,13 +158,13 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
                 if (!TextUtils.isEmpty(data.recordList.left.title))
                     holder!!.itemView.tv_left_top.text = data.recordList.left.title
                 if (!TextUtils.isEmpty(data.recordList.left.color))
-                    holder!!.itemView.tv_left_top.setTextColor(Color.parseColor("#${data.recordList.left.color}"))
+                    holder!!.itemView.tv_left_top.setTextColor(Color.parseColor("#474747"))
                 if (!TextUtils.isEmpty(data.recordList.left.content))
                     holder!!.itemView.tv_left_bottom.text = data.recordList.left.content
                 if (!TextUtils.isEmpty(data.recordList.right.title))
                     holder!!.itemView.tv_right_top.text = data.recordList.right.title
                 if (!TextUtils.isEmpty(data.recordList.right.color))
-                    holder!!.itemView.tv_right_top.setTextColor(Color.parseColor("#${data.recordList.right.color}"))
+                    holder!!.itemView.tv_right_top.setTextColor(Color.parseColor("#474747"))
                 if (!TextUtils.isEmpty(data.recordList.right.content))
                     holder!!.itemView.tv_right_center.text = data.recordList.right.content
                 if (!TextUtils.isEmpty(data.recordList.right.content_01))
@@ -184,7 +184,7 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
             }
             EnumForecastType.TYPE_MATCH_LIST.type -> {
                 if (holder!!.itemView.rv_match_list.adapter == null) {
-                    holder.itemView.rv_match_list.adapter = HomeMatchListRvAdapter(context, data.footballMatchs, data.basketballMatchs)
+                    holder.itemView.rv_match_list.adapter = HomeMatchListRvAdapter(context, data.footballMatchs.matchs, data.basketballMatchs.matchs)
                     holder.itemView.rv_match_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 } else {
                     holder.itemView.rv_match_list.adapter.notifyDataSetChanged()
