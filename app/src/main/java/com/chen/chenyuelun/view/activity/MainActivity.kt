@@ -7,28 +7,56 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.KeyEvent
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.adapter.HomeMenuRvAdapter
+import com.chen.chenyuelun.data.entity.HomeMenuItemBean
+import com.chen.chenyuelun.presenter.MainPresenter
 import com.chen.chenyuelun.utils.IntentParams
-import com.chen.chenyuelun.utils.NavigationBarUtils
 import com.chen.chenyuelun.view.fragment.*
 import com.chen.libraryresouse.base.BaseActiviy
 import com.chen.libraryresouse.base.BaseFragment
 import com.chen.libraryresouse.base.EnumMainTag
+import com.chen.libraryresouse.base.IView
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActiviy() {
+class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IView {
 
 
-    private val navigationData = NavigationBarUtils.instance.getData()
+    private lateinit var navigationData :List<HomeMenuItemBean>
 
     private val fragmentMap = mutableMapOf<String, BaseFragment>()
+
+    //正在前台的fragment
+    private var showedFragment: BaseFragment? = null
 
     override fun getLayoutId() = R.layout.activity_main
 
     override fun getTitleLayout() = null
 
+    override fun createPresenter(): MainPresenter<MainActivity> {
+        return MainPresenter()
+    }
+
+
+    override fun showLoading() {
+
+    }
+
+
+
     override fun setUp() {
-        rv_main_navigation.layoutManager = GridLayoutManager(this, navigationData.size)!!
+        mPresenter.fetch()
+    }
+    override fun  showData(data: Any) {
+        if (data is List<*>){
+            if (data.isNotEmpty() && data[0] is HomeMenuItemBean){
+                initNavigationAndFragments(data as List<HomeMenuItemBean>)
+            }
+        }
+    }
+
+    fun initNavigationAndFragments(navigationData :List<HomeMenuItemBean>){
+        this.navigationData = navigationData
+        rv_main_navigation.layoutManager = GridLayoutManager(this, navigationData.size)
         val adapter = HomeMenuRvAdapter(this, navigationData)
         rv_main_navigation.adapter = adapter
         navigationData.forEach {
@@ -44,12 +72,7 @@ class MainActivity : BaseActiviy() {
         adapter.changSlectItem(EnumMainTag.FORECAST.tag)
     }
 
-    override fun requestApi() {
 
-    }
-
-    //正在前台的fragment
-    private var showedFragment: BaseFragment? = null
 
     //根据tag显示要展示的界面
     fun changeFragmentShow(tag: String = EnumMainTag.FORECAST.tag) {

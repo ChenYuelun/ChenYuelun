@@ -33,9 +33,10 @@ import com.chen.libraryresouse.utils.PhoneParameterUtils
  *
  *说明：
  */
-abstract class BaseActiviy : AppCompatActivity() {
+abstract class BaseActiviy<V,P : IPrsenter<V>> : AppCompatActivity() {
 
     open lateinit var mPagename :String
+    open lateinit var mPresenter :P
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +44,15 @@ abstract class BaseActiviy : AppCompatActivity() {
         mPagename = this::class.simpleName!!//当前类名
         //添加activity的管理器中
         ActivityStack.addActivity(this)
+        mPresenter = createPresenter()
+        mPresenter.attach(this as V)
         PhoneParameterUtils.setTitleLayout(this,getTitleLayout())
         initIntentData()
         setUp()
         readCahce()
-        requestApi()
     }
+
+    abstract fun createPresenter(): P
 
     abstract fun getTitleLayout(): View ?
 
@@ -61,10 +65,6 @@ abstract class BaseActiviy : AppCompatActivity() {
 
     open fun readCahce() {}
 
-    abstract fun requestApi()
-
-
-
     override fun onResume() {
         super.onResume()
         LogUtils.d("thisPage", mPagename)
@@ -72,6 +72,8 @@ abstract class BaseActiviy : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+
+        mPresenter.detach()
         //从activity管理器中移除
         ActivityStack.removeActivity(this)
     }

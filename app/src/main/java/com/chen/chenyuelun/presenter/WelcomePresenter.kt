@@ -1,106 +1,36 @@
 package com.chen.chenyuelun.presenter
 
-import com.chen.chenyuelun.data.entity.GetBannerAdvertiseManagementResponse
-import com.chen.chenyuelun.data.entity.HomeCatalogResponse
-import com.chen.chenyuelun.data.entity.HomeMenuResponse
-import com.chen.chenyuelun.network.ParamsMapValue
-import com.chen.chenyuelun.network.request.GetBannerAdvertiseManagementRequest
-import com.chen.chenyuelun.network.request.HomeCatalogrequest
-import com.chen.chenyuelun.network.request.MainMenuRequest
-import com.chen.chenyuelun.data.single.AppInfo
-import com.chen.chenyuelun.utils.NavigationBarUtils
-import com.chen.chenyuelun.view.BaseView
-import com.chen.librarynetwork.transformer.MyDefaultTransformer
-import com.chen.libraryresouse.utils.LogUtils
-import com.chen.libraryresouse.utils.toast
-import io.reactivex.rxkotlin.subscribeBy
+import com.chen.chenyuelun.model.WelcomeModelmpI
+import com.chen.libraryresouse.base.IModel
+import com.chen.libraryresouse.base.IPrsenter
+import com.chen.libraryresouse.base.IView
 
 /**
  * Created by chenyuelun on 2018/1/27.
  */
-class WelcomePresenter(viewImp: BaseView) : BasePresenter {
+class WelcomePresenter<T : IView> : IPrsenter<T>() {
 
-    val view = viewImp
+    val mModel = WelcomeModelmpI()
 
-    override fun readDataFromCache() {
+    override fun fetch() {
+        mModel.loadCache(object :IModel.OnDataLoadListener<String>{
+            override fun onComplete(data: String) {
+                if (mViewRef.get()!= null){
+                    mViewRef.get()!!.showData(data)
+                }
 
-    }
+            }
 
-    override fun requestDataFromApi() {
-        sendHomeMenuApi()
-        sendGetBannerAdvertiseManagementRequest()
-        sendApiHomeCatalog()
-    }
-
-
-    /**
-     * Created by yyz on 01/06/2017.
-     * 发送请求闪屏倒计时信息接口
-     */
-    private fun sendGetBannerAdvertiseManagementRequest() {
-        val getBannerAdvertiseManagementRequest = GetBannerAdvertiseManagementRequest("xiaomi")
-        ServiceFactory.createRxRetrofitService()
-                .getBannerAdvertiseManagement(getBannerAdvertiseManagementRequest.getSign(), getBannerAdvertiseManagementRequest.getRequestMap())
-                .compose(MyDefaultTransformer<GetBannerAdvertiseManagementResponse>())
-                .subscribeBy(
-                        onError = {
-                            LogUtils.d("闪屏请求出错：" + it.message)
-                            it.printStackTrace()
-                            toast(it.message!!)
-                        },
-                        onNext = {
-                            LogUtils.d("闪屏请求成功")
-                        })
-    }
-
-
-    private fun sendHomeMenuApi() {
-        val homeMenuRequest = MainMenuRequest()
-        ServiceFactory.createRxRetrofitService()
-                .getHomeMenu(homeMenuRequest.getSign(), homeMenuRequest.getRequestMap())
-                .compose(MyDefaultTransformer<HomeMenuResponse>())
-                .subscribeBy(
-                        onNext = {
-                            LogUtils.d("首页底部导航数据请求成功")
-                            NavigationBarUtils.instance.savaData(it)
-                        },
-
-                        onError = {
-                            LogUtils.d("首页底部导航数据请求出错：" + it.message)
-                            it.printStackTrace()
-                            toast(it.message!!)
-                        }
-
-
-                )
+        })
 
     }
 
-    //请求首页目录接口
-    private fun sendApiHomeCatalog() {
-        val request = HomeCatalogrequest()
-        ServiceFactory.createRxRetrofitService()
-                .getHomeCatalog(request.getSign(), request.getRequestMap())
-                .compose(MyDefaultTransformer<HomeCatalogResponse>())
-                .subscribeBy(
-                        onNext = {
-                            if (it.code == 0){
-                                LogUtils.d("首页目录数据请求成功")
-                                AppInfo.instance.homeCatalog = it.resp.toMutableList()
-                                AppInfo.instance.getCacheManager().put(ParamsMapValue.CMD_HOME_CATALOG,it)
-                            }else{
-                                LogUtils.d("联网成功，数据失败")
-                            }
+//
+//    override fun requestDataFromApi() {
 
-                        },
-                        onError = {
-                            LogUtils.d("首页目录数据请求成功")
-                        })
-    }
-
-    private fun sendVertifyCanBuy() {
+//    }
+//
 
 
-    }
 
 }

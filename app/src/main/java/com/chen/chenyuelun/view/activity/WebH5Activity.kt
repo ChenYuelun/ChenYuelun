@@ -8,7 +8,12 @@ import android.os.Handler
 import android.text.TextUtils
 import android.view.View
 import com.chen.chenyuelun.R
+import com.chen.chenyuelun.presenter.MainPresenter
+import com.chen.chenyuelun.presenter.WebPresenter
+import com.chen.chenyuelun.presenter.WelcomePresenter
 import com.chen.libraryresouse.base.BaseActiviy
+import com.chen.libraryresouse.base.IPrsenter
+import com.chen.libraryresouse.base.IView
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
 import com.tencent.smtt.sdk.WebChromeClient
@@ -17,15 +22,15 @@ import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import kotlinx.android.synthetic.main.activity_web_h5.*
 
-class WebH5Activity : BaseActiviy() {
+class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
+    override fun createPresenter(): WebPresenter {
+        return WebPresenter()
+    }
+
     var loadUrl = ""
     val UPDATA_PROGRESS = 0
     val UPDATA_TITLE = 1
     override fun getTitleLayout() = titleLayout
-
-    override fun initIntentData() {
-        loadUrl = "https://www.baidu.com/"
-    }
 
     override fun setUp() {
         initWebView()
@@ -121,8 +126,6 @@ class WebH5Activity : BaseActiviy() {
 
     override fun getLayoutId() = R.layout.activity_web_h5
 
-    override fun requestApi() {
-    }
 
     class MyWebChromeClient : WebChromeClient() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {

@@ -24,9 +24,12 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
         private const val MAX_SIZE = 50000000L  // 50 mb
         private const val MAX_COUNT = Integer.MAX_VALUE // 不限制存放数据的数量
         private val mInstanceMap = HashMap<String, CacheManager>()
-
+        var instance :CacheManager? = null
         operator fun get(ctx: Context): CacheManager {
-            return get(ctx, "caiqrc")
+            if (instance == null){
+                instance = get(ctx, "caiqrc")
+            }
+            return instance!!
         }
 
         operator fun get(ctx: Context, cacheName: String): CacheManager {
@@ -574,7 +577,7 @@ class CacheManager private constructor(cacheDir: File, maxSize: Long, max_count:
             lastUsageDates[file] = currentTime
         }
 
-         fun get(key: String): File {
+        fun get(key: String): File {
             val file = newFile(key)
             val currentTime = System.currentTimeMillis()
             file.setLastModified(currentTime)
