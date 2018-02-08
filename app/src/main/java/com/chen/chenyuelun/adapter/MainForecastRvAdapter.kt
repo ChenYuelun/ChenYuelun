@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.data.model.HomeForecastData
+import com.chen.chenyuelun.data.entity.HomeForecastData
 import com.chen.chenyuelun.data.single.AppInfo
 import com.chen.libraryresouse.base.EnumForecastType
 import com.chen.libraryresouse.costomView.AutoScrollViewPager

@@ -9,10 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.data.model.SeasonList
+import com.chen.chenyuelun.data.entity.SeasonList
 import com.chen.libraryresouse.utils.DensityUtils
 import com.chen.libraryresouse.utils.toast
-import com.youth.banner.loader.ImageLoader
 import kotlinx.android.synthetic.main.item_guess_you_like.view.*
 
 /**

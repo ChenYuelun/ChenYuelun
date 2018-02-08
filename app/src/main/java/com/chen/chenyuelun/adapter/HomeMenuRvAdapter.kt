@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.data.model.HomeMenuItemBean
+import com.chen.chenyuelun.data.entity.HomeMenuItemBean
 import com.chen.chenyuelun.view.activity.MainActivity
 import com.chen.libraryresouse.base.EnumMainTag
 import com.chen.libraryresouse.utils.DensityUtils

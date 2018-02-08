@@ -1,12 +1,12 @@
 package com.chen.chenyuelun.presenter
 
-import com.chen.chenyuelun.data.model.GetBannerAdvertiseManagementResponse
-import com.chen.chenyuelun.data.model.HomeCatalogResponse
-import com.chen.chenyuelun.data.model.HomeMenuResponse
-import com.chen.chenyuelun.data.network.ParamsMapValue
-import com.chen.chenyuelun.data.network.request.GetBannerAdvertiseManagementRequest
-import com.chen.chenyuelun.data.network.request.HomeCatalogrequest
-import com.chen.chenyuelun.data.network.request.MainMenuRequest
+import com.chen.chenyuelun.data.entity.GetBannerAdvertiseManagementResponse
+import com.chen.chenyuelun.data.entity.HomeCatalogResponse
+import com.chen.chenyuelun.data.entity.HomeMenuResponse
+import com.chen.chenyuelun.network.ParamsMapValue
+import com.chen.chenyuelun.network.request.GetBannerAdvertiseManagementRequest
+import com.chen.chenyuelun.network.request.HomeCatalogrequest
+import com.chen.chenyuelun.network.request.MainMenuRequest
 import com.chen.chenyuelun.data.single.AppInfo
 import com.chen.chenyuelun.utils.NavigationBarUtils
 import com.chen.chenyuelun.view.BaseView

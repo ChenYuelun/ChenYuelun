@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.data.model.TopNavigationList
+import com.chen.chenyuelun.data.entity.TopNavigationList
 import com.chen.libraryresouse.utils.ImageLoader
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.item_top_navigation.view.*

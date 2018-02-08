@@ -1,16 +1,16 @@
 package com.chen.chenyuelun.presenter
 
-import com.chen.chenyuelun.data.model.*
-import com.chen.chenyuelun.data.network.ParamsMapValue
-import com.chen.chenyuelun.data.network.ParamsMapValue.Companion.CMD_CAIQIU_FOCUS
-import com.chen.chenyuelun.data.network.ParamsMapValue.Companion.CMD_HOME_ADVERTIS
-import com.chen.chenyuelun.data.network.ParamsMapValue.Companion.CMD_HOME_GUESS_YOU_LIKE
-import com.chen.chenyuelun.data.network.ParamsMapValue.Companion.CMD_HOME_HOT_MATCH
-import com.chen.chenyuelun.data.network.ParamsMapValue.Companion.CMD_HOME_INSTANT_MESSAGE
-import com.chen.chenyuelun.data.network.ParamsMapValue.Companion.CMD_HOME_RESULT
-import com.chen.chenyuelun.data.network.ParamsMapValue.Companion.CMD_TOP_NAVIGATE
-import com.chen.chenyuelun.data.network.request.*
+import com.chen.chenyuelun.data.entity.*
+import com.chen.chenyuelun.network.ParamsMapValue
+import com.chen.chenyuelun.network.ParamsMapValue.Companion.CMD_CAIQIU_FOCUS
+import com.chen.chenyuelun.network.ParamsMapValue.Companion.CMD_HOME_ADVERTIS
+import com.chen.chenyuelun.network.ParamsMapValue.Companion.CMD_HOME_GUESS_YOU_LIKE
+import com.chen.chenyuelun.network.ParamsMapValue.Companion.CMD_HOME_HOT_MATCH
+import com.chen.chenyuelun.network.ParamsMapValue.Companion.CMD_HOME_INSTANT_MESSAGE
+import com.chen.chenyuelun.network.ParamsMapValue.Companion.CMD_HOME_RESULT
+import com.chen.chenyuelun.network.ParamsMapValue.Companion.CMD_TOP_NAVIGATE
 import com.chen.chenyuelun.data.single.AppInfo
+import com.chen.chenyuelun.network.request.*
 import com.chen.chenyuelun.view.BaseView
 import com.chen.librarynetwork.transformer.MyDefaultTransformer
 import com.chen.libraryresouse.base.EnumForecastType
@@ -95,7 +95,7 @@ class MainForecastPresenter(val view: BaseView, val data: HomeForecastData) : Ba
                         if (hotMatchData != null && hotMatchData is HotBettingResponse) {
                             data.hotMatchs = hotMatchData.resp[0]
                         } else {
-                            data.hotMatchs = HotMatchs(5, 0, "热门比赛", "","", listOf(), listOf())
+                            data.hotMatchs = HotMatchs(5, 0, "热门比赛", "", "", listOf(), listOf())
                         }
                     }
                     EnumForecastType.TYPE_FOOT_LIVE.tag -> {
@@ -109,7 +109,7 @@ class MainForecastPresenter(val view: BaseView, val data: HomeForecastData) : Ba
                         if (recordData != null && recordData is RecordResponse) {
                             data.recordList = recordData.resp[0]
                         } else {
-                            data.recordList = RecordBean(8, "", "", Left("太准了", "没这么准的", "#ffffff"), Right("#ffffff", "没这么准的", "太装了",""))
+                            data.recordList = RecordBean(8, "", "", Left("太准了", "没这么准的", "#ffffff"), Right("#ffffff", "没这么准的", "太装了", ""))
                         }
                     }
                     EnumForecastType.TYPE_GUESS_YOU_LIKE.tag -> {

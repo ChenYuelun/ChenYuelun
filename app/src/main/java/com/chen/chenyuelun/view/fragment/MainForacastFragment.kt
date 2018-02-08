@@ -2,10 +2,9 @@ package com.chen.chenyuelun.view.fragment
 
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.adapter.MainForecastRvAdapter
-import com.chen.chenyuelun.data.model.HomeForecastData
+import com.chen.chenyuelun.data.entity.HomeForecastData
 import com.chen.chenyuelun.presenter.MainForecastPresenter
 import com.chen.chenyuelun.view.BaseView
 import com.chen.chenyuelun.view.activity.WebH5Activity

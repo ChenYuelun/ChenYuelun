@@ -1,5 +1,5 @@
 package com.chen.chenyuelun.data.single
-import com.chen.chenyuelun.data.model.HomeCatalogBean
+import com.chen.chenyuelun.data.entity.HomeCatalogBean
 import com.chen.libraryresouse.utils.CacheManager
 
 /**

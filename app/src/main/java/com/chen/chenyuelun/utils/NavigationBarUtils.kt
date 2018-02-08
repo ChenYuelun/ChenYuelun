@@ -4,9 +4,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.data.model.HomeMenuItemBean
-import com.chen.chenyuelun.data.model.HomeMenuResponse
-import com.chen.chenyuelun.data.network.ParamsMapValue
+import com.chen.chenyuelun.data.entity.HomeMenuItemBean
+import com.chen.chenyuelun.data.entity.HomeMenuResponse
+import com.chen.chenyuelun.network.ParamsMapValue
 import com.chen.chenyuelun.data.single.AppApplication
 import com.chen.chenyuelun.data.single.AppInfo
 import com.chen.libraryresouse.base.EnumMainTag

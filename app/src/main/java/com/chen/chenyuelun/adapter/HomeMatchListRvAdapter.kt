@@ -1,8 +1,6 @@
 package com.chen.chenyuelun.adapter
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
@@ -12,8 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.data.model.BasketballItem
-import com.chen.chenyuelun.data.model.FootballItem
+import com.chen.chenyuelun.data.entity.BasketballItem
+import com.chen.chenyuelun.data.entity.FootballItem
 import com.chen.libraryresouse.base.EnumForecastType
 import com.chen.libraryresouse.utils.AnimationUtils
 import com.chen.libraryresouse.utils.DateTools
@@ -21,7 +19,6 @@ import com.chen.libraryresouse.utils.ImageLoader
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.layout_main_item_match.view.*
 import kotlinx.android.synthetic.main.layout_main_match_tab.view.*
-import kotlinx.android.synthetic.main.layout_main_no_match.view.*
 import kotlinx.android.synthetic.main.view_match_forecast.view.*
 
 /**
