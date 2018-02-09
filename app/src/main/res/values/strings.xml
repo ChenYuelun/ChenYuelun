@@ -2,4 +2,5 @@
     <string name="app_name">HelloKotlin</string>
     <string name="hint_search">输入球队或联赛</string>
     <string name="record_total">战绩统计</string>
+    <string name="todo">TODO</string>
 </resources>

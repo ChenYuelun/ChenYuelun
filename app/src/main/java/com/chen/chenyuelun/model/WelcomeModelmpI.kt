@@ -40,7 +40,7 @@ class WelcomeModelmpI() :IModel<String>{
         val getBannerAdvertiseManagementRequest = GetBannerAdvertiseManagementRequest("xiaomi")
         ServiceFactory.createRxRetrofitService()
                 .getBannerAdvertiseManagement(getBannerAdvertiseManagementRequest.getSign(), getBannerAdvertiseManagementRequest.getRequestMap())
-                .compose(MyDefaultTransformer<GetBannerAdvertiseManagementResponse>())
+                .compose(MyDefaultTransformer())
                 .subscribeBy(
                         onError = {
                             LogUtils.d("闪屏请求出错：" + it.message)

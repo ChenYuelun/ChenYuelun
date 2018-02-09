@@ -22,7 +22,8 @@
         <activity
             android:name=".view.activity.MainActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".view.activity.WebH5Activity"></activity>
+        <activity android:name=".view.activity.WebH5Activity" />
+        <activity android:name=".view.activity.JcAndSfcActivity"></activity>
     </application>
 
 </manifest>

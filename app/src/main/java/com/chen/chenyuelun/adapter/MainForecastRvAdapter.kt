@@ -21,6 +21,7 @@ import com.chen.libraryresouse.utils.ImageLoader
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.layout_main_advertising.view.*
 import kotlinx.android.synthetic.main.layout_main_banner.view.*
+import kotlinx.android.synthetic.main.layout_main_football_live.view.*
 import kotlinx.android.synthetic.main.layout_main_guess_you_like.view.*
 import kotlinx.android.synthetic.main.layout_main_hot_matchs.view.*
 import kotlinx.android.synthetic.main.layout_main_marquee.view.*
@@ -75,7 +76,7 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
             EnumForecastType.TYPE_FOOT_LIVE.type ->
                 viewId = R.layout.layout_main_football_live
             EnumForecastType.TYPE_BASKET_LIVE.type ->
-                viewId = R.layout.layout_main_basketball_live
+                viewId = R.layout.layout_main_football_live
             EnumForecastType.TYPE_RECORD.type ->
                 viewId = R.layout.layout_main_record
             EnumForecastType.TYPE_GUESS_YOU_LIKE.type ->
@@ -151,20 +152,24 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
 
             }
             EnumForecastType.TYPE_FOOT_LIVE.type -> {
+                holder!!.itemView.tv_live_title.text = "足球直播"
+                holder.itemView.web_main_forecast.loadUrl("https://m.caiqr.cn/matchLive/basketball.html")
             }
             EnumForecastType.TYPE_BASKET_LIVE.type -> {
+                holder!!.itemView.tv_live_title.text = "篮球直播"
+                holder.itemView.web_main_forecast.loadUrl(data.basketballLiveUrl.url)
             }
             EnumForecastType.TYPE_RECORD.type -> {
                 if (!TextUtils.isEmpty(data.recordList.left.title))
                     holder!!.itemView.tv_left_top.text = data.recordList.left.title
                 if (!TextUtils.isEmpty(data.recordList.left.color))
-                    holder!!.itemView.tv_left_top.setTextColor(Color.parseColor("#474747"))
+                    holder!!.itemView.tv_left_top.setTextColor(Color.parseColor("#${data.recordList.left.color}"))
                 if (!TextUtils.isEmpty(data.recordList.left.content))
                     holder!!.itemView.tv_left_bottom.text = data.recordList.left.content
                 if (!TextUtils.isEmpty(data.recordList.right.title))
                     holder!!.itemView.tv_right_top.text = data.recordList.right.title
                 if (!TextUtils.isEmpty(data.recordList.right.color))
-                    holder!!.itemView.tv_right_top.setTextColor(Color.parseColor("#474747"))
+                    holder!!.itemView.tv_right_top.setTextColor(Color.parseColor("#${data.recordList.right.color}"))
                 if (!TextUtils.isEmpty(data.recordList.right.content))
                     holder!!.itemView.tv_right_center.text = data.recordList.right.content
                 if (!TextUtils.isEmpty(data.recordList.right.content_01))

@@ -13,6 +13,7 @@ import com.chen.chenyuelun.presenter.MainPresenter
 import com.chen.chenyuelun.utils.IntentParams
 import com.chen.chenyuelun.view.fragment.*
 import com.chen.libraryresouse.base.*
+import com.chen.libraryresouse.utils.LogUtils
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -52,14 +53,15 @@ class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IVi
         this.navigationData = navigationData
         rv_main_navigation.layoutManager = GridLayoutManager(this, navigationData.size)
         val adapter = HomeMenuRvAdapter(this, navigationData)
+        LogUtils.d("dddddddddddd",navigationData.toString())
         rv_main_navigation.adapter = adapter
         navigationData.forEach {
             when (it.postionTag) {
                 EnumMainTag.FORECAST.tag -> this.fragmentMap[it.postionTag] = MainForacastFragment()
-                EnumMainTag.PLAN.tag -> fragmentMap[it.postionTag] = MainPlanFragment()
-                EnumMainTag.SOCIAL.tag -> fragmentMap[it.postionTag] = MainSocialFragment()
-                EnumMainTag.ME.tag -> fragmentMap[it.postionTag] = MainMeFragment()
-                EnumMainTag.WEB.tag -> fragmentMap[it.postionTag] = MainWebFragment()
+                EnumMainTag.PLAN.tag -> this.fragmentMap[it.postionTag] = MainPlanFragment()
+                EnumMainTag.SOCIAL.tag -> this.fragmentMap[it.postionTag] = MainSocialFragment()
+                EnumMainTag.ME.tag -> this.fragmentMap[it.postionTag] = MainMeFragment()
+                EnumMainTag.WEB.tag -> this.fragmentMap[it.postionTag] = MainWebFragment()
             }
         }
 

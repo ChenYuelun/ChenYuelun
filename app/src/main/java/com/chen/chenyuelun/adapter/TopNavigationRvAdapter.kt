@@ -1,11 +1,13 @@
 package com.chen.chenyuelun.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.data.entity.TopNavigationList
+import com.chen.chenyuelun.view.activity.JcAndSfcActivity
 import com.chen.libraryresouse.utils.ImageLoader
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.item_top_navigation.view.*
@@ -25,7 +27,7 @@ class TopNavigationRvAdapter(val context: Context,var data : TopNavigationList) 
         holder!!.itemView.tv_top_menu.text = bean.content
         ImageLoader.loadImage(bean.imgUrl,holder.itemView.iv_top_menu)
         holder.itemView.setOnClickListener{
-            toast(bean.content)
+            context.startActivity(Intent(context, JcAndSfcActivity::class.java))
         }
     }
 

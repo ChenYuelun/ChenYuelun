@@ -60,13 +60,14 @@ class MainModelmpl :IModel<Any>{
     }
 
     private fun defaultNavigationData(items: MutableList<HomeMenuItemBean>) {
-
+        val defaultNormalColor = "#BCBBBB"
+        val defaultPressColor = "#5CC3FF"
         items.add(HomeMenuItemBean(
                 "比赛预测",
                 ImageLoader.idToBitmap(R.drawable.analyse_normal),
                 ImageLoader.idToBitmap(R.drawable.analyse_press),
-                R.color.navigationbar_normal_color,
-                R.color.navigationbar_press_color,
+                Color.parseColor(defaultNormalColor),
+                Color.parseColor(defaultPressColor),
                 EnumMainTag.FORECAST.tag,
                 false
         ))
@@ -74,27 +75,27 @@ class MainModelmpl :IModel<Any>{
                 "方案",
                 ImageLoader.idToBitmap(R.drawable.plan_normal),
                 ImageLoader.idToBitmap(R.drawable.plan_press),
-                R.color.navigationbar_normal_color,
-                R.color.navigationbar_press_color,
-                EnumMainTag.FORECAST.tag,
+                Color.parseColor(defaultNormalColor),
+                Color.parseColor(defaultPressColor),
+                EnumMainTag.PLAN.tag,
                 false
         ))
         items.add(HomeMenuItemBean(
                 "圈子",
                 ImageLoader.idToBitmap(R.drawable.information_normal),
                 ImageLoader.idToBitmap(R.drawable.information_press),
-                R.color.navigationbar_normal_color,
-                R.color.navigationbar_press_color,
-                EnumMainTag.FORECAST.tag,
+                Color.parseColor(defaultNormalColor),
+                Color.parseColor(defaultPressColor),
+                EnumMainTag.SOCIAL.tag,
                 false
         ))
         items.add(HomeMenuItemBean(
                 "我",
                 ImageLoader.idToBitmap(R.drawable.me_normal),
                 ImageLoader.idToBitmap(R.drawable.me_press),
-                R.color.navigationbar_normal_color,
-                R.color.navigationbar_press_color,
-                EnumMainTag.FORECAST.tag,
+                Color.parseColor(defaultNormalColor),
+                Color.parseColor(defaultPressColor),
+                EnumMainTag.ME.tag,
                 false
         ))
 
