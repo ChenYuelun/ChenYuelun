@@ -2,9 +2,8 @@ package com.chen.chenyuelun.view.fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.chen.chenyuelun.R
 import com.chen.chenyuelun.databinding.FragmentCalenderJcBinding
-import com.chen.chenyuelun.mvvm.BaseFragment2
+import com.chen.libraryresouse.base.mvvm.BaseFragment2
 import com.chen.chenyuelun.mvvm.viewModel.JcSfcViewModel
 
 /**

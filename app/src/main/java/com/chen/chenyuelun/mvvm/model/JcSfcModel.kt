@@ -4,7 +4,7 @@ import com.chen.chenyuelun.data.entity.FootballListSportteryResponse
 import com.chen.chenyuelun.network.request.FootballDateSportteryRequest
 import com.chen.chenyuelun.network.request.FootballListSportteryRequest
 import com.chen.librarynetwork.transformer.MyDefaultTransformer
-import com.chen.libraryresouse.base.IModel
+import com.chen.libraryresouse.base.mvp.IModel
 import com.chen.libraryresouse.utils.LogUtils
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -39,7 +39,7 @@ class JcSfcModel : IModel<FootballListSportteryResponse> {
     }
 
 
-    private fun sendApiJcList(listener: IModel.OnDataLoadListener<FootballListSportteryResponse>,date :String){
+    private fun sendApiJcList(listener: IModel.OnDataLoadListener<FootballListSportteryResponse>, date :String){
         val request = FootballListSportteryRequest(date)
         ServiceFactory.createRxRetrofitService()
                 .getFootballListSporttery(request.getSign(),request.getRequestMap())

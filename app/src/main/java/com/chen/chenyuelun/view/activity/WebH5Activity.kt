@@ -1,21 +1,15 @@
 package com.chen.chenyuelun.view.activity
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Bitmap
-import android.os.Build
 import android.os.Handler
 import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.View
 import android.widget.FrameLayout
 import com.chen.chenyuelun.R
-import com.chen.chenyuelun.presenter.MainPresenter
 import com.chen.chenyuelun.presenter.WebPresenter
-import com.chen.chenyuelun.presenter.WelcomePresenter
-import com.chen.libraryresouse.base.BaseActiviy
-import com.chen.libraryresouse.base.IPrsenter
-import com.chen.libraryresouse.base.IView
+import com.chen.libraryresouse.base.mvp.BaseActiviy
+import com.chen.libraryresouse.base.mvp.IView
 import com.tencent.smtt.export.external.interfaces.SslError
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler
 import com.tencent.smtt.sdk.WebChromeClient
@@ -24,7 +18,7 @@ import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import kotlinx.android.synthetic.main.activity_web_h5.*
 
-class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>(),IView{
+class WebH5Activity : BaseActiviy<WebH5Activity, WebPresenter>(), IView {
 
 
     override fun createPresenter(): WebPresenter {

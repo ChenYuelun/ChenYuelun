@@ -7,8 +7,8 @@ import com.chen.chenyuelun.adapter.MainForecastRvAdapter
 import com.chen.chenyuelun.data.entity.*
 import com.chen.chenyuelun.presenter.ForecastFragmentPresenter
 import com.chen.chenyuelun.view.activity.WebH5Activity
-import com.chen.libraryresouse.base.BaseFragment
-import com.chen.libraryresouse.base.IView
+import com.chen.libraryresouse.base.mvp.BaseFragment
+import com.chen.libraryresouse.base.mvp.IView
 import kotlinx.android.synthetic.main.layout_fragment_main_foracast.*
 import kotlinx.android.synthetic.main.refresh_layout.*
 

@@ -1,11 +1,11 @@
-package com.chen.libraryresouse.base
+package com.chen.libraryresouse.base.mvp
 
 import java.lang.ref.WeakReference
 
 /**
  * Created by chenyuelun on 2018/2/8.
  */
-abstract class IPrsenter<T :IView> {
+abstract class IPrsenter<T : IView> {
 
     lateinit var mViewRef: WeakReference<T>
 

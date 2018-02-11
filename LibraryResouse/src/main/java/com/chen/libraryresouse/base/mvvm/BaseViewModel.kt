@@ -1,4 +1,4 @@
-package com.chen.chenyuelun.mvvm.viewModel
+package com.chen.libraryresouse.base.mvvm
 
 import android.databinding.BaseObservable
 import android.databinding.ViewDataBinding

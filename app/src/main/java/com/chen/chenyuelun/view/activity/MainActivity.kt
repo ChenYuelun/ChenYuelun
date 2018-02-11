@@ -13,11 +13,13 @@ import com.chen.chenyuelun.presenter.MainPresenter
 import com.chen.chenyuelun.utils.IntentParams
 import com.chen.chenyuelun.view.fragment.*
 import com.chen.libraryresouse.base.*
+import com.chen.libraryresouse.base.mvp.BaseActiviy
+import com.chen.libraryresouse.base.mvp.IView
 import com.chen.libraryresouse.utils.LogUtils
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActiviy<MainActivity,MainPresenter<MainActivity>>(),IView {
+class MainActivity : BaseActiviy<MainActivity, MainPresenter<MainActivity>>(), IView {
 
 
     private lateinit var navigationData :List<HomeMenuItemBean>

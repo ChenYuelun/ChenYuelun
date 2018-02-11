@@ -1,6 +1,5 @@
 package com.chen.chenyuelun.model
 
-import android.graphics.Bitmap
 import android.graphics.Color
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.data.entity.HomeMenuItemBean
@@ -9,13 +8,13 @@ import com.chen.chenyuelun.data.single.AppApplication
 import com.chen.chenyuelun.data.single.AppInfo
 import com.chen.chenyuelun.network.ParamsMapValue
 import com.chen.libraryresouse.base.EnumMainTag
-import com.chen.libraryresouse.base.IModel
+import com.chen.libraryresouse.base.mvp.IModel
 import com.chen.libraryresouse.utils.ImageLoader
 
 /**
  * Created by chenyuelun on 2018/2/8.
  */
-class MainModelmpl :IModel<Any>{
+class MainModelmpl : IModel<Any> {
     override fun loadCache(listener: IModel.OnDataLoadListener<Any>) {
 
     }

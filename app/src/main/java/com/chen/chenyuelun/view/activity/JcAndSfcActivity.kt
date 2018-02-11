@@ -1,8 +1,6 @@
 package com.chen.chenyuelun.view.activity
 
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.View
@@ -10,8 +8,7 @@ import com.chen.chenyuelun.R
 import com.chen.chenyuelun.adapter.CalenderVPAdapter
 import com.chen.chenyuelun.databinding.ActivityJcAndSfcBinding
 import com.chen.chenyuelun.view.fragment.CalenderJCMatchFragment
-import com.chen.chenyuelun.view.fragment.CalenderSFCMatchFragment
-import com.chen.libraryresouse.base.BaseActiviy2
+import com.chen.libraryresouse.base.mvvm.BaseActiviy2
 import com.chen.libraryresouse.utils.toast
 import kotlinx.android.synthetic.main.activity_jc_and_sfc.*
 

@@ -4,14 +4,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.chen.chenyuelun.databinding.FragmentCalenderJcBinding
-import com.chen.chenyuelun.mvvm.BaseFragment2
+import com.chen.libraryresouse.base.mvvm.BaseFragment2
 import com.chen.chenyuelun.mvvm.adapter.JcRvAdapter
 import com.chen.chenyuelun.mvvm.viewModel.JcSfcViewModel
 
 /**
  * Created by chenyuelun on 2018/2/9.
  */
-class CalenderJCMatchFragment : BaseFragment2<FragmentCalenderJcBinding,JcSfcViewModel>() {
+class CalenderJCMatchFragment : BaseFragment2<FragmentCalenderJcBinding, JcSfcViewModel>() {
 
     override fun createViewModel(): JcSfcViewModel {
         return JcSfcViewModel()

@@ -1,7 +1,5 @@
 package com.chen.chenyuelun.model
 
-import android.content.Context
-import com.chen.chenyuelun.data.entity.GetBannerAdvertiseManagementResponse
 import com.chen.chenyuelun.data.entity.HomeCatalogResponse
 import com.chen.chenyuelun.data.entity.HomeMenuResponse
 import com.chen.chenyuelun.data.single.AppApplication
@@ -11,7 +9,7 @@ import com.chen.chenyuelun.network.request.GetBannerAdvertiseManagementRequest
 import com.chen.chenyuelun.network.request.HomeCatalogrequest
 import com.chen.chenyuelun.network.request.MainMenuRequest
 import com.chen.librarynetwork.transformer.MyDefaultTransformer
-import com.chen.libraryresouse.base.IModel
+import com.chen.libraryresouse.base.mvp.IModel
 import com.chen.libraryresouse.utils.ImageLoader
 import com.chen.libraryresouse.utils.LogUtils
 import com.chen.libraryresouse.utils.toast
@@ -20,7 +18,7 @@ import io.reactivex.rxkotlin.subscribeBy
 /**
  * Created by chenyuelun on 2018/2/8.
  */
-class WelcomeModelmpI() :IModel<String>{
+class WelcomeModelmpI() : IModel<String> {
 
     override fun loadCache(listener: IModel.OnDataLoadListener<String>) {
 

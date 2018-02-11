@@ -1,15 +1,14 @@
 package com.chen.chenyuelun.view.fragment
 
-import android.view.View
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.presenter.MainMePresenter
-import com.chen.libraryresouse.base.BaseFragment
-import com.chen.libraryresouse.base.IView
+import com.chen.libraryresouse.base.mvp.BaseFragment
+import com.chen.libraryresouse.base.mvp.IView
 
 /**
  * Created by chenyuelun on 2018/2/2.
  */
-class MainMeFragment:BaseFragment<MainMeFragment,MainMePresenter<MainMeFragment>>(),IView{
+class MainMeFragment: BaseFragment<MainMeFragment, MainMePresenter<MainMeFragment>>(), IView {
     override fun showLoading() {
 
     }

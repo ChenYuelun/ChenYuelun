@@ -6,7 +6,7 @@ import com.chen.chenyuelun.network.ParamsMapValue
 import com.chen.chenyuelun.network.request.*
 import com.chen.librarynetwork.transformer.MyDefaultTransformer
 import com.chen.libraryresouse.base.EnumForecastType
-import com.chen.libraryresouse.base.IModel
+import com.chen.libraryresouse.base.mvp.IModel
 import com.chen.libraryresouse.utils.LogUtils
 import io.reactivex.rxkotlin.subscribeBy
 

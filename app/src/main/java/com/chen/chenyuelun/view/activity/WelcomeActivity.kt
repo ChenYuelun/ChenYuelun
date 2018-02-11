@@ -1,12 +1,10 @@
 package com.chen.chenyuelun.view.activity
 
 import android.os.Handler
-import android.view.View
 import com.chen.chenyuelun.R
 import com.chen.chenyuelun.presenter.WelcomePresenter
-import com.chen.chenyuelun.view.BaseView
-import com.chen.libraryresouse.base.BaseActiviy
-import com.chen.libraryresouse.base.IView
+import com.chen.libraryresouse.base.mvp.BaseActiviy
+import com.chen.libraryresouse.base.mvp.IView
 import com.chen.libraryresouse.constans.SPConstants
 import com.chen.libraryresouse.utils.SPUtils
 

@@ -1,7 +1,6 @@
-package com.chen.libraryresouse.base
+package com.chen.libraryresouse.base.mvp
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.chen.libraryresouse.utils.ActivityStack
@@ -33,7 +32,7 @@ import com.chen.libraryresouse.utils.PhoneParameterUtils
  *
  *说明：
  */
-abstract class BaseActiviy<V :IView,P : IPrsenter<V>> : AppCompatActivity() {
+abstract class BaseActiviy<V : IView,P : IPrsenter<V>> : AppCompatActivity() {
 
     open lateinit var mPagename :String
     open lateinit var mPresenter :P
