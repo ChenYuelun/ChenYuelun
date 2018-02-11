@@ -1,5 +1,6 @@
 package com.chen.libraryresouse.costomView
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -25,14 +26,14 @@ class ConfidenceView : View {
     private var textNumberSize = 0f //数字大小
     private var textPercentSize = 0f //百分号大小
     private var textSize = 0f //文字大小
-    private var textNumber: String? = null
-    private var probability = 0f
+    private var textNumber: String ="90"
+    private var probability = 0
     private var TEXTCONTENT = "预测概率"
     //默认颜色
     private var defaultColor = resources.getColor(R.color.confidence)
     constructor(context: Context) :super(context)
 
-    constructor(context: Context,attributeSet: AttributeSet):super(context,attributeSet){
+    constructor(context: Context, attributeSet: AttributeSet):super(context,attributeSet){
         init()
     }
 
@@ -46,7 +47,7 @@ class ConfidenceView : View {
         textNumberSize = DensityUtils.sp2px(context,21f)
         textPercentSize = DensityUtils.sp2px(context,15f)
         textSize = DensityUtils.sp2px(context,8f)
-        probability = 90f
+        probability = 90
         textNumber = "90"
     }
 
@@ -67,7 +68,7 @@ class ConfidenceView : View {
         mPaint.setColor(roundProgressColor)
         //弧形的边界
         val oval = RectF(center - radius, center - radius, center + radius, center + radius)
-        canvas.drawArc(oval, 270f, 360 * (probability / 100), false, mPaint)
+        canvas.drawArc(oval, 270f, 360 * (probability.toFloat() / 100), false, mPaint)
         //文字
         mPaint.setStrokeWidth(0f)
         mPaint.setColor(textColor)
@@ -86,15 +87,15 @@ class ConfidenceView : View {
 
     }
 
-    fun setProbability(probability: Float) {
+    fun setProbability(probability: Int) {
         this.probability = probability
-        textNumber = probability.toInt().toString() + ""
+        textNumber = probability.toString()
         invalidate()
     }
 
-    fun setProbabilityAndName(probability: Float, name: String) {
+    fun setProbabilityAndName(probability: Int, name: String) {
         this.probability = probability
-        textNumber = probability.toInt().toString() + ""
+        textNumber = probability.toString()
         this.TEXTCONTENT = name
         invalidate()
     }

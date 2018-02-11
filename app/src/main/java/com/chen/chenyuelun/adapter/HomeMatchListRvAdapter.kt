@@ -203,7 +203,7 @@ class HomeMatchListRvAdapter(val context: Context, var footballMatchs: MutableLi
                     val confidenceIndex = Integer.parseInt(bean.caiqiuIndex)
                     if (confidenceIndex > 0) {
                         itemView.confidenceView.setVisibility(View.VISIBLE)
-                        itemView.confidenceView.setProbability(confidenceIndex.toFloat())
+                        itemView.confidenceView.setProbability(confidenceIndex)
                     } else {
                         itemView.confidenceView.setVisibility(View.INVISIBLE)
                     }
@@ -298,7 +298,7 @@ class HomeMatchListRvAdapter(val context: Context, var footballMatchs: MutableLi
                     val confidenceIndex = Integer.parseInt(bean.caiqiuIndex)
                     if (confidenceIndex > 0) {
                         itemView.confidenceView.setVisibility(View.VISIBLE)
-                        itemView.confidenceView.setProbability(confidenceIndex.toFloat())
+                        itemView.confidenceView.setProbability(confidenceIndex)
                     } else {
                         itemView.confidenceView.setVisibility(View.INVISIBLE)
                     }

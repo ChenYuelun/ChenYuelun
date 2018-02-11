@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.chen.chenyuelun.mvvm.viewModel.JcSfcViewModel" />
+
+        <variable
+            name="onSelectStatus"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+
+        android:id="@+id/ll_matchTopStatus"
+        android:layout_width="match_parent"
+        android:layout_height="38dp">
+
+
+        <TextView
+            android:id="@+id/tv_weiwanchang"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@{viewModel.status ? @color/liveBtnSelect : @color/liveBtnNotSelect}"
+            android:gravity="center"
+            android:onClick="@{onSelectStatus}"
+            android:text="未完场"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@{viewModel.status  ? @color/blue3 : @color/liveTextNotSelect}"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_yiwanchang"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@{!viewModel.status  ? @color/liveBtnSelect : @color/liveBtnNotSelect}"
+            android:gravity="center"
+            android:onClick="@{onSelectStatus}"
+            android:text="已完场"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@{!viewModel.status  ? @color/blue3 : @color/liveTextNotSelect}"
+            android:textSize="15sp" />
+    </LinearLayout>
+</layout>

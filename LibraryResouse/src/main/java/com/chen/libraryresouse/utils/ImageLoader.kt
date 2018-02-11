@@ -7,6 +7,9 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import java.net.HttpURLConnection
 import java.net.URL
+import android.databinding.BindingAdapter
+
+
 
 /**
  * Created by chenyuelun on 2018/2/5.
@@ -19,6 +22,12 @@ class ImageLoader private constructor(){
                     .load(imageUrl)
                     .into(imageView)
         }
+
+        @BindingAdapter("image")
+        fun imageLoader(imageView: ImageView, url: String) {
+           loadImage(url, imageView)
+        }
+
 
         /**
          * 获取网络图片 转换为bitmap

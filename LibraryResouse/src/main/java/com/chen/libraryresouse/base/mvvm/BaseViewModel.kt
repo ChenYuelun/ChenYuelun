@@ -10,14 +10,14 @@ import java.lang.ref.WeakReference
  */
 abstract class BaseViewModel<T : ViewDataBinding> : BaseObservable(), Serializable {
 
-    lateinit var dataBinding :WeakReference<T>
+    lateinit var mDataBinding:WeakReference<T>
     fun attch(t:T){
-        dataBinding = WeakReference(t)
+        mDataBinding = WeakReference(t)
     }
 
 
     fun detach(){
-        dataBinding.clear()
+        mDataBinding.clear()
     }
 
     abstract fun feach()

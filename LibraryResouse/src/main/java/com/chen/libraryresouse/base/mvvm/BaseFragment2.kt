@@ -35,10 +35,10 @@ import com.chen.libraryresouse.utils.PhoneParameterUtils
  *
  *说明：
  */
-abstract class BaseFragment2<B : ViewDataBinding,M : BaseViewModel<B>> : Fragment() {
+abstract class BaseFragment2<B : ViewDataBinding,VM : BaseViewModel<B>> : Fragment() {
     open var mPagename = ""
     lateinit var mDataBinding: B
-    lateinit var viewModel: M
+    lateinit var viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mDataBinding = getBanding(inflater,container)
@@ -55,7 +55,7 @@ abstract class BaseFragment2<B : ViewDataBinding,M : BaseViewModel<B>> : Fragmen
         initView()
     }
 
-    abstract fun createViewModel(): M
+    abstract fun createViewModel(): VM
 
     abstract fun getBanding(inflater: LayoutInflater, container: ViewGroup?): B
 

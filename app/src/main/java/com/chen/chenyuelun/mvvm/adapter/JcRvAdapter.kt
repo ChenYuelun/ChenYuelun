@@ -1,7 +1,6 @@
 package com.chen.chenyuelun.mvvm.adapter
 
 import android.databinding.DataBindingUtil
-import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
@@ -15,7 +14,7 @@ import com.chen.chenyuelun.databinding.ItemRecyclerJcFragmentBinding
 /**
  * Created by chenyuelun on 2018/2/9.
  */
-class JcRvAdapter(var datas: ObservableField<ObservableArrayList<JcOrSfcMatchBean>>) : RecyclerView.Adapter<JcRvAdapter.MVVMViewHolder>() {
+class JcRvAdapter(var datas: ObservableField<MutableList<JcOrSfcMatchBean>>) : RecyclerView.Adapter<JcRvAdapter.MVVMViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MVVMViewHolder {
         val binding = DataBindingUtil
                 .inflate<ItemRecyclerJcFragmentBinding>(

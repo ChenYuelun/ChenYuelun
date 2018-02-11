@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.chen.chenyuelun.mvvm.viewModel.JcSfcViewModel"/>
+            type="com.chen.chenyuelun.mvvm.viewModel.JcSfcViewModel" />
 
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        <include
+            android:id="@+id/calenderSelector"
+            layout="@layout/calendar_selector"
+
+            />
+
+        <include
+            bind:viewModel = "@{viewModel}"
+            android:id="@+id/matchStatus"
+            layout="@layout/match_status" />
+
+        <include
             android:id="@+id/refreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            layout="@layout/refresh_layout" />
 
     </LinearLayout>
 </layout>
