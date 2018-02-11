@@ -69,6 +69,16 @@ interface RequestApi {
     //首页比赛预测列表 足球篮球
     @FormUrlEncoded
     @POST("api/home_match_list")
-    abstract fun getHomeMatchList(@HeaderMap map: Map<String, String>, @FieldMap maps: Map<String, String>): Observable<HomeMatchListResponse>
+    fun getHomeMatchList(@HeaderMap map: Map<String, String>, @FieldMap maps: Map<String, String>): Observable<HomeMatchListResponse>
+
+    //竞彩日历
+    @FormUrlEncoded
+    @POST("api/football_date_sporttery")
+    fun getFootballDateSporttery(@HeaderMap map: Map<String, String>, @FieldMap maps: Map<String, String>): Observable<FootballDateSportteryResponse>
+
+    //竞彩日历
+    @FormUrlEncoded
+    @POST("api/football_list_sporttery_02")
+    fun getFootballListSporttery(@HeaderMap map: Map<String, String>, @FieldMap maps: Map<String, String>): Observable<FootballListSportteryResponse>
 
 }

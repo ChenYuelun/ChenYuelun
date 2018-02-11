@@ -33,7 +33,7 @@ import com.chen.libraryresouse.utils.PhoneParameterUtils
  *
  *说明：
  */
-abstract class BaseActiviy<V,P : IPrsenter<V>> : AppCompatActivity() {
+abstract class BaseActiviy<V :IView,P : IPrsenter<V>> : AppCompatActivity() {
 
     open lateinit var mPagename :String
     open lateinit var mPresenter :P

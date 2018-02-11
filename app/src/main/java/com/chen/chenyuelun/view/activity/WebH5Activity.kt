@@ -24,7 +24,9 @@ import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import kotlinx.android.synthetic.main.activity_web_h5.*
 
-class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
+class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>(),IView{
+
+
     override fun createPresenter(): WebPresenter {
         return WebPresenter()
     }
@@ -157,6 +159,12 @@ class WebH5Activity : BaseActiviy<WebH5Activity,WebPresenter>() {
 
     class MyWebViewClient : WebViewClient() {
 
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun showData(data: Any) {
     }
 
 }

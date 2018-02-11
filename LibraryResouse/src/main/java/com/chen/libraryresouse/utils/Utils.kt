@@ -32,15 +32,15 @@ class Utils{
          */
          fun isDue(data: ByteArray): Boolean {
             val strs = getDateInfoFromDate(data)
-            if (strs != null && strs!!.size == 2) {
-                var saveTimeStr = strs!![0]
+            if (strs != null && strs.size == 2) {
+                var saveTimeStr = strs[0]
                 while (saveTimeStr.startsWith("0")) {
                     saveTimeStr = saveTimeStr
                             .substring(1, saveTimeStr.length)
                 }
                 val saveTime = java.lang.Long.valueOf(saveTimeStr)!!
-                val deleteAfter = java.lang.Long.valueOf(strs!![1])!!
-                if (System.currentTimeMillis() > saveTime!! + deleteAfter!! * 1000) {
+                val deleteAfter = java.lang.Long.valueOf(strs[1])!!
+                if (System.currentTimeMillis() > saveTime + deleteAfter * 1000) {
                     return true
                 }
             }

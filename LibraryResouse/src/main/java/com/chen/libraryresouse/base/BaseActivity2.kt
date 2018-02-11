@@ -14,7 +14,7 @@ abstract class BaseActiviy2 : AppCompatActivity() {
     open lateinit var mPagename :String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        getBinding()
         mPagename = this::class.simpleName!!//当前类名
         //添加activity的管理器中
         ActivityStack.addActivity(this)
@@ -23,12 +23,12 @@ abstract class BaseActiviy2 : AppCompatActivity() {
         setUp()
         readCahce()
     }
+
+    abstract fun getBinding()
+
     abstract fun getTitleLayout(): View?
 
     abstract fun setUp()
-
-    abstract fun getLayoutId(): Int
-
 
     open fun initIntentData() {}
 

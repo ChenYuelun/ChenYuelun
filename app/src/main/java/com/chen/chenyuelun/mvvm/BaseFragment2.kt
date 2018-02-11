@@ -1,10 +1,12 @@
-package com.chen.libraryresouse.base
+package com.chen.chenyuelun.mvvm
 
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chen.chenyuelun.mvvm.viewModel.BaseViewModel
 import com.chen.libraryresouse.utils.LogUtils
 import com.chen.libraryresouse.utils.PhoneParameterUtils
 
@@ -34,31 +36,31 @@ import com.chen.libraryresouse.utils.PhoneParameterUtils
  *
  *说明：
  */
-abstract class BaseFragment<V :IView,P : IPrsenter<V>> : Fragment() {
-
+abstract class BaseFragment2<B : ViewDataBinding,M :BaseViewModel<B>> : Fragment() {
     open var mPagename = ""
-    open lateinit var mPresenter :P
+    lateinit var mDataBinding: B
+    lateinit var viewModel: M
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getLayoutId(),null)
+        mDataBinding = getBanding(inflater,container)
+        return mDataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter = createPresenter()
-        mPresenter.attach(this as V)
-        PhoneParameterUtils.setTitleLayout(context!!,getTitleLyout())
+        PhoneParameterUtils.setTitleLayout(context!!, getTitleLyout())
+        viewModel = createViewModel()
+        viewModel.attch(mDataBinding)
         setUp()
         initArguments()
         initView()
     }
 
-    abstract fun createPresenter(): P
+    abstract fun createViewModel(): M
+
+    abstract fun getBanding(inflater: LayoutInflater, container: ViewGroup?): B
 
     abstract fun getTitleLyout(): View?
-
-
-    abstract fun getLayoutId(): Int
 
     protected fun initView() {}
 
@@ -66,7 +68,6 @@ abstract class BaseFragment<V :IView,P : IPrsenter<V>> : Fragment() {
 
     open fun setUp() {
         mPagename = this::class.simpleName!!//当前类名
-        LogUtils.d("thisPageName", mPagename)
     }
 
 
@@ -76,7 +77,6 @@ abstract class BaseFragment<V :IView,P : IPrsenter<V>> : Fragment() {
     }
 
     override fun onDestroy() {
-        mPresenter.detach()
         super.onDestroy()
     }
 }

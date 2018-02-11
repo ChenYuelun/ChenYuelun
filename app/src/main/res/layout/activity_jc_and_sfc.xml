@@ -1,86 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.chen.chenyuelun.view.activity.JcAndSfcActivity">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/every_out_top"
-        android:id="@+id/titleLayout"
-        android:baselineAligned="false">
-
+        android:baselineAligned="false"
+        android:orientation="horizontal">
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/ll_back"
             android:layout_width="60dp"
             android:layout_height="match_parent"
+            android:background="@drawable/btn_back_selector"
             android:gravity="center_vertical"
-            android:background="@drawable/btn_back_selector">
+            android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/imageView56"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:id="@+id/imageView56"
-                android:background="@drawable/back"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:background="@drawable/back"
                 android:contentDescription="@string/todo" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
                 <TextView
+                    android:id="@+id/tv_JC"
                     android:layout_width="90dp"
                     android:layout_height="30dp"
-                    android:text="竞彩"
-                    android:id="@+id/tv_JC"
-                    android:textSize="15sp"
-                    android:textColor="@color/top_btn_press_color"
+                    android:background="@drawable/data_letf_btn_press"
                     android:gravity="center"
-                    android:background="@drawable/data_letf_btn_press" />
+                    android:onClick="onSelected"
+                    android:text="竞彩"
+                    android:textColor="@color/top_btn_press_color"
+                    android:textSize="15sp"
+                    tools:ignore="OnClick" />
 
                 <TextView
+                    android:id="@+id/tv_SFC"
                     android:layout_width="90dp"
                     android:layout_height="30dp"
-                    android:text="胜负彩"
-                    android:id="@+id/tv_SFC"
-                    android:textSize="15sp"
-                    android:textColor="@color/top_btn_normal_color"
+                    android:background="@drawable/data_right_btn_normal"
                     android:gravity="center"
-                    android:background="@drawable/data_right_btn_normal" />
+                    android:onClick="onSelected"
+                    android:text="胜负彩"
+                    android:textColor="@color/top_btn_normal_color"
+                    android:textSize="15sp"
+                    tools:ignore="OnClick" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/ll_search"
             android:layout_width="60dp"
             android:layout_height="fill_parent"
+            android:background="@drawable/btn_back_selector"
             android:gravity="center"
-            android:background="@drawable/btn_back_selector">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/search2"
                 android:layout_marginLeft="10dp"
-                android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                android:background="@drawable/search2"
+                android:contentDescription="@string/todo" />
         </LinearLayout>
 
     </LinearLayout>
@@ -88,6 +92,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager_JC_SFC"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
+</layout>

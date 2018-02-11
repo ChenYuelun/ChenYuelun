@@ -5,7 +5,7 @@ import java.lang.ref.WeakReference
 /**
  * Created by chenyuelun on 2018/2/8.
  */
-abstract class IPrsenter<T> {
+abstract class IPrsenter<T :IView> {
 
     lateinit var mViewRef: WeakReference<T>
 

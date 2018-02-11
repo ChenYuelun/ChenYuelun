@@ -7,6 +7,9 @@ class ParamsMapValue private constructor() {
     companion object {
         const val CAIQR_CLIENT_TYPE = 0
 
+        val ONE = "1"
+        val HOME = "home"
+        val SPORTTERY = "sporttery"
         const val CAIQR_VERSION = "1.2"
         //闪屏倒计时接口
         const val CMD_GET_BANNER_ADVERTISE_MANAGEMENT = "getBannerAdvertiseManagement"
@@ -43,6 +46,10 @@ class ParamsMapValue private constructor() {
         const val CMD_HOME_MATCH_LIST = "home_match_list"
         //首页广告位
         const val CMD_HOME_ADVERTIS = "home_advertis"
+        //竞彩日历
+        val CMD_FOOTBALL_DATE_SPORTTERY = "football_date_sporttery"
+        //竞彩一天的比赛
+        val CMD_FOOTBALL_LIST_SPORTTERY = "football_list_sporttery_02"
     }
 
 }

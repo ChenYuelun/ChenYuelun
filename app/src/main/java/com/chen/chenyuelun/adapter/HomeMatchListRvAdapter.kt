@@ -28,7 +28,7 @@ class HomeMatchListRvAdapter(val context: Context, var footballMatchs: MutableLi
 
     var isShowFootball = true
     override fun getItemCount(): Int {
-        var count = 0;
+        var count = 0
         if (isShowFootball) {
             if (footballMatchs.isNotEmpty()) {
                 count = footballMatchs.size + 1

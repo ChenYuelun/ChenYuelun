@@ -163,13 +163,13 @@ class MainForecastRvAdapter(val context: Context, val data: HomeForecastData) : 
                 if (!TextUtils.isEmpty(data.recordList.left.title))
                     holder!!.itemView.tv_left_top.text = data.recordList.left.title
                 if (!TextUtils.isEmpty(data.recordList.left.color))
-                    holder!!.itemView.tv_left_top.setTextColor(Color.parseColor("#${data.recordList.left.color}"))
+                    holder!!.itemView.tv_left_top.setTextColor(Color.parseColor("#${data.recordList.left.color.trim()}"))
                 if (!TextUtils.isEmpty(data.recordList.left.content))
                     holder!!.itemView.tv_left_bottom.text = data.recordList.left.content
                 if (!TextUtils.isEmpty(data.recordList.right.title))
                     holder!!.itemView.tv_right_top.text = data.recordList.right.title
                 if (!TextUtils.isEmpty(data.recordList.right.color))
-                    holder!!.itemView.tv_right_top.setTextColor(Color.parseColor("#${data.recordList.right.color}"))
+                    holder!!.itemView.tv_right_top.setTextColor(Color.parseColor("#${data.recordList.right.color.trim()}"))
                 if (!TextUtils.isEmpty(data.recordList.right.content))
                     holder!!.itemView.tv_right_center.text = data.recordList.right.content
                 if (!TextUtils.isEmpty(data.recordList.right.content_01))

@@ -14,5 +14,7 @@ class ParamsMapKey private constructor() {
         const val LOTTERY_CODE = "lottery_code"
         // 首页比赛列表 最后一条比赛的id
         const val LATEST_ID = "latest_id"
+        val SHORT = "short"
+        val DATE = "date"
     }
 }

@@ -195,13 +195,11 @@ class PhoneParameterUtils{
         fun isNetworkAvailable(context: Context): Boolean {
             val mConnectivityManager =  context
                     .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if (mConnectivityManager != null) {
                 val mNetworkInfo = mConnectivityManager
                         .activeNetworkInfo
                 if (mNetworkInfo != null) {
                     return mNetworkInfo.isAvailable && mNetworkInfo.isConnected
                 }
-            }
             return false
         }
 
